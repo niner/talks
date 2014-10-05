@@ -1,0 +1,25 @@
+Threading in Perl 5
+
+Who's used threading in Perl 5?
+
+How threading works in Perl 5
+
+What's so difficult about threads?
+
+Methodcall
+
+How other languages deal with this problem:
+Python
+Ruby
+Java
+
+Parrot
+very short introduction
+
+Green Threads
+
+Hybrid Threads
+
+Example (matrix multiplication)
+
+Benchmark results

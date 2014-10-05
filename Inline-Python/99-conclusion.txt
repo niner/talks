@@ -1,0 +1,8 @@
+
+    Inline::Python on CPAN
+
+    Leverage existing Python code.
+    Use the best of both worlds.
+    Profit!
+
+    Slides on http://niner.name/talks

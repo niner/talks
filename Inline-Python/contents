@@ -1,0 +1,63 @@
+00-me.txt
+
+-title.txt
+    What is Python?
+    Execute Python code in a Perl program
+
+-what_is_it.txt
+    Embedding Python
+    What would I use this for?
+    CPAN growing, but still not complete ->
+
+_use_cases.txt
+    Python used for desktop stuff
+
+    How does this look like?
+
+16-first_example.pl
+    use Inline
+    Python code as string
+    gets executed on the spot
+
+    cool, but not very useful / could run external Python
+
+-mixing.pl
+    Functions in the __main__ namespace get imported
+    Can be called like Perl subs
+    Return values useful!
+
+-parameters.pl
+    Parameters work / data types get converted
+
+    Inline code vs. libraries
+
+13-libraries.pl
+
+    os = operating system
+
+    Returns list, context aware!
+
+-arrayref.pl
+
+-import.pl
+
+-browser.pl
+    Python desktop stuff
+    webbrowser: control a user's default browser
+    Use Python objects!
+    Call methods
+
+-class.pl
+    Instantiate Python classes directly
+    new == __init__
+
+    All pretty cool, but all polluting the main namespace
+    => lower level interface
+
+-low-level.pl
+    now useing Inline::Python instead of Inline interface
+
+05-pyqt4.pl
+
+-conclusion.txt
+    Labeled BETA -> need more real world testing, maybe missing features
