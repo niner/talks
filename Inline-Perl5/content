@@ -1,0 +1,75 @@
+1. Inline::Perl5
+	Today I'm gonna show you how to port a Catalyst based web application to Perl 6
+	Catalyst is one of the oldest and most powerful MVC frameworks for Perl.
+	The application is CiderWebmail. A very nice webmail application Mathias and I wrote a couple years ago.
+	So where do we start?
+	Catalyst creates start script for you to run your application on a Perl webserver: script/ciderwebmail_server.pl
+	Let's have a look at it.
+
+2. <00-ciderwebmail_server.pl
+	Fairly straight forward perl script.
+	Basically just loading a module and calling a package method that does the real work.
+	This is where we start porting to Perl 6.
+
+3. <01-ciderwebmail_server.pl
+	If you look at the first line, I just replaced perl by perl6.
+	Setting the environment variable just got translated to different syntax.
+	Then we load Inline::Perl5 which gave this talk its title.
+	We create a new $p5 object and call its run method giving it a single string as argument.
+
+3. Live demo
+
+4. Thank you!
+	We can now run CiderWebmail in Perl 6!
+        There's a bit of time left.
+        Do you want to see some bonus material or should we head to an early lunch?
+
+        If you've seen my lightning talk at YAPC::EU, what I've showed so far was probably pretty boring, since this has worked a couple of hours after I've started writing Inline::Perl5.
+        So what's new?
+        There are a couple of improvements we can make on our startup script.
+
+5. <02-ciderwebmail_server.pl
+        Inline::Perl5 has a 'use' method that does exactly the same as use in Perl5.
+        That's basically just sugar, so you don't have to use run just to load a module.
+        Then there's invoke which lets you call methods on packages or objects.
+        You just give it your package or object, the name of the method and additional arguments.
+
+6. 03-petal.pl
+        Of course the method may have one or more return values and those get returned by invoke just like you'd expect.
+        This quick example uses Perl 5's Petal templating module.
+        We just create a new template object.
+        Then we feed it some data in the form of a hash containing strings and lists.
+        The function returns a string which we then print.
+    
+7. Inheritance by delegation
+        The next example brings us back to Catalyst.
+        What I've shown so far allows you to use a large number of CPAN modules.
+        However, some of them expect you to subclass.
+        In Catalyst you write model, view and controller classes that are subclasses of classes Catalyst provides.
+        Controllers for example are derived from Catalyst::Controller.
+
+8. <04-catalyst-controller.pl
+        Inheritance based APIs usually expect you to implement some methods.
+        For Catalyst controllers those methods are the actions that handle web requests.
+        Inline::Perl5 provides a Perl5Parent role.
+        By consuming this role in your class, you are telling Inline::Perl5 that your class should act like a subclass of the given Perl 5 class.
+        That means whenever a method on an object of this class is called, it is dispatched to your Perl 6 class.
+        If the Perl 6 class does not provide the method, the call is dispatched to the underlying Perl 5 object.
+        This works regardless of the caller being Perl 5 or Perl 6 code.
+        I call this inheritance by delegation.
+
+        This mechanism would allow you for example to use HTML::Parser in Perl 6.
+        But it's not enough for Catalyst.
+
+8. Class::MOP as example
+9. v6
+
+things to show:
+- .run
+	.call
+	.use
+	.invoke
+
+	inheritance by delegation
+	v6
+	Perl5Attributes and Class::MOP
