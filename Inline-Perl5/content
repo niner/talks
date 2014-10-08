@@ -3,7 +3,7 @@
 	Catalyst is one of the oldest and most powerful MVC frameworks for Perl.
 	The application is CiderWebmail. A very nice webmail application Mathias and I wrote a couple years ago.
 	So where do we start?
-	Catalyst creates start script for you to run your application on a Perl webserver: script/ciderwebmail_server.pl
+	Catalyst creates a start script for you to run your application on a Perl webserver: script/ciderwebmail_server.pl
 	Let's have a look at it.
 
 2. <00-ciderwebmail_server.pl
@@ -17,7 +17,7 @@
 	Then we load Inline::Perl5 which gave this talk its title.
 	We create a new $p5 object and call its run method giving it a single string as argument.
 
-3. Live demo
+3b. Live demo
 
 4. Thank you!
 	We can now run CiderWebmail in Perl 6!
@@ -51,6 +51,8 @@
 8. <04-catalyst-controller.pl
         Inheritance based APIs usually expect you to implement some methods.
         For Catalyst controllers those methods are the actions that handle web requests.
+
+	So how do we subclass a Perl 5 class in Perl 6?
         Inline::Perl5 provides a Perl5Parent role.
         By consuming this role in your class, you are telling Inline::Perl5 that your class should act like a subclass of the given Perl 5 class.
         That means whenever a method on an object of this class is called, it is dispatched to your Perl 6 class.
@@ -60,16 +62,36 @@
 
         This mechanism would allow you for example to use HTML::Parser in Perl 6.
         But it's not enough for Catalyst.
+	Catalyst components are Moose classes.
+	Catalyst uses Class::MOP's introspection capabilities to find the actions a controller supports and how they should be mapped to URLs.
+	The latter is done by querying the attributes of the action methods.
 
-8. Class::MOP as example
-9. v6
+	Perl 6 does not have subroutine attributes and Class::MOP does only deal with classes it created itself.
+	To be able to use a Perl 6 object as Catalyst controller, I wrote a replacement for Class::MOP that I could use as meta class for my controllers.
 
-things to show:
-- .run
-	.call
-	.use
-	.invoke
+8. <MOP.pm
+	Luckily Perl 6 already supports meta objects and introspection so this ended up being surprisingly little code.
+	I really only have to map the Class::MOP API that Catalyst uses to the Perl 6 introspection API.
 
-	inheritance by delegation
-	v6
-	Perl5Attributes and Class::MOP
+9. <Component.pm
+
+	So how do we manage information about how to map URLs to actions?
+
+	While Perl 6 does not have subroutine attributes it has traits.
+	Traits allow you to easily attach meta data to all kinds of objects including methods.
+
+10. <Perl5Attributes.pm6
+	These traits just apply a role to the method and stores the meta data in a new attribute that can be queried by Perl6::MOP.
+
+	This is pretty much everything you need to write Catalyst components in Perl 6.
+	However there's one annoying thing left.
+	Catalyst automatically loads modules from the Model, View and Controller namespaces.
+	Obviously these are Perl 5 modules which would then have to load the corresponding Perl 6 modules containing the real code.
+	Luckily there's a solution for that, too.
+
+11. <Root.pm
+	Inline::Perl5 automatically creates a package called v6-inline.
+	By just saying "use v6-inline;" you can hand over the rest of the file to Perl 6 for processing.
+	This allows you to have the Perl 6 code in the same file als the Perl 5 shim.
+
+12. Live demo
