@@ -1,5 +1,16 @@
 1. Inline::Perl5
-	Today I'm gonna show you how to port a Catalyst based web application to Perl 6
+	My name is Stefan Seifert.
+	I've been a Perl developer for 15 years.
+	About half of this time I've been following Perl 6 development.
+	I went to YAPCs and workshops and whenever jnthn or masak were attending, I've seen great talks about cool features in Perl 6.
+	I've been Wanting to try it for years, but always ran into some missing library like DBI, Catalyst, Mail::ImapClient, the Petal XML template module.
+	So I sat outside, watching from the fence and going back to work.
+
+	At this year's YAPC I decided to finally do something about it.
+	What started out as a very fancy Hello World hack, quickly evolved into a module that gave this talk its title: Inline::Perl5.
+	About a month after the initial commit, I was at a point where I could port a Catalyst based web application to Perl 6.
+
+	Today I'm gonna show you how to do exactly that.
 	Catalyst is one of the oldest and most powerful MVC frameworks for Perl.
 	The application is CiderWebmail. A very nice webmail application Mathias and I wrote a couple years ago.
 	So where do we start?
@@ -10,6 +21,8 @@
 	Fairly straight forward perl script.
 	Basically just loading a module and calling a package method that does the real work.
 	This is where we start porting to Perl 6.
+
+
 
 3. <01-ciderwebmail_server.pl
 	If you look at the first line, I just replaced perl by perl6.
@@ -95,3 +108,35 @@
 	This allows you to have the Perl 6 code in the same file als the Perl 5 shim.
 
 12. Live demo
+
+13. What does not work? <13-limits
+	I've shown you a lot of things that do work with Inline::Perl5.
+	An obvious question is: what does not work?
+	Without making any claim of completeness, there are some obvious candidates:
+		* Any kind of source filter would be highly surprised by finding Perl 6 code.
+		* Low level modules in the Devel:: namespace.
+		* Probably most modules in the Perl6 namespace which are by their very nature obsolete.
+		* As you've seen, interaction with Class::MOP does not work out of the box, but can at least in some cases be implemented easily.
+
+14. Alternatives (v5) <14-v5.pl
+	If you don't actually need XS support, there is an alternative to Inline::Perl5.
+	It's called v5 and in short is an implementation of Perl 5, written in Perl 6.
+	It parses Perl 5 code using a Perl 6 grammar and compiles it to an AST just like it's done with Perl 6 code.
+	This means that it can benefit from JIT compilation and threading support thereby in theory allowing it to surpass Perl 5's performance.
+	So if you can get away with it, v5 should be your first place to go.
+	However, like I said, it does not support XS and never will.
+	It also does not cope too well with anything based on Devel::Declare or influencing the parsing in any way.
+
+	Inline::Python available as well!
+
+15. Future work
+	Inline::Perl5 does pretty much everything I need to be able to get into Perl 6 for real.
+	Future work will thus be driven mostly by user feedback, i.e. you.
+	However, some ideas are already floating around:
+	* Importing symbols from Perl 5 modules into Perl 6 code sounds fairly straight forward to implement.
+	* Synopsis 1 calls for Perl 6 to assume a program to be written in Perl 5 unless there's some clear indication that it's Perl 6.
+	  This is not yet implemented, but I'd like Perl 6 to automatically fall back to using Inline::Perl5.
+	  Even better would be to fall back to v5 and use Inline::Perl5 transparently for supporting XS modules.
+	* Of course, like with Perl 6 in general, performance is high up on the TODO list.
+
+16. Summary <16-summary
