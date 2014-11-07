@@ -82,18 +82,19 @@
 	Perl 6 does not have subroutine attributes and Class::MOP does only deal with classes it created itself.
 	To be able to use a Perl 6 object as Catalyst controller, I wrote a replacement for Class::MOP that I could use as meta class for my controllers.
 
-8. <MOP.pm
+8. <05-MOP.pm
 	Luckily Perl 6 already supports meta objects and introspection so this ended up being surprisingly little code.
 	I really only have to map the Class::MOP API that Catalyst uses to the Perl 6 introspection API.
+	This is how it is used:
 
-9. <Component.pm
+9. <06-Component.pm
 
 	So how do we manage information about how to map URLs to actions?
 
 	While Perl 6 does not have subroutine attributes it has traits.
 	Traits allow you to easily attach meta data to all kinds of objects including methods.
 
-10. <Perl5Attributes.pm6
+10. <09-Perl5Attributes.pm6
 	These traits just apply a role to the method and stores the meta data in a new attribute that can be queried by Perl6::MOP.
 
 	This is pretty much everything you need to write Catalyst components in Perl 6.
@@ -102,7 +103,7 @@
 	Obviously these are Perl 5 modules which would then have to load the corresponding Perl 6 modules containing the real code.
 	Luckily there's a solution for that, too.
 
-11. <Root.pm
+11. <11-Root.pm
 	Inline::Perl5 automatically creates a package called v6-inline.
 	By just saying "use v6-inline;" you can hand over the rest of the file to Perl 6 for processing.
 	This allows you to have the Perl 6 code in the same file als the Perl 5 shim.
