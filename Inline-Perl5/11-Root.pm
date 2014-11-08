@@ -1,31 +1,33 @@
-package XStats::Controller::Root;
-use Moose;
-use namespace::autoclean;
 
-BEGIN { extends 'Catalyst::Controller'; with 'CatalystX::Perl6::Component'; }
 
-__PACKAGE__->config(namespace => '');
+    package XStats::Controller::Root;
+    use Moose;
+    use namespace::autoclean;
 
-__PACKAGE__->init_metaclass;
-__PACKAGE__->meta->make_immutable;
+    BEGIN { extends 'Catalyst::Controller'; with 'CatalystX::Perl6::Component'; }
 
-use v6-inline;
+    __PACKAGE__->config(namespace => '');
 
-use CatalystX::Perl6::Component::Perl5Attributes;
-also does Inline::Perl5::Perl5Parent['XStats::Controller::Root'];
-also does CatalystX::Perl6::Component;
+    __PACKAGE__->init_metaclass;
+    __PACKAGE__->meta->make_immutable;
 
-method index($c) is Path is Args[0] {
-    $c.stash({
-        template  => 'index.zpt',
-        uri_graph => $c.uri_for('graph'),
-    });
-}
+    use v6-inline;
 
-method default($c) is Path {
-    $c.response.body( 'Page not found' );
-    $c.response.status(404);
-}
+    use CatalystX::Perl6::Component::Perl5Attributes;
+    also does Inline::Perl5::Perl5Parent['XStats::Controller::Root'];
+    also does CatalystX::Perl6::Component;
 
-method end($c) is ActionClass["RenderView"] {
-}
+    method index($c) is Path is Args[0] {
+        $c.stash({
+            template  => 'index.zpt',
+            uri_graph => $c.uri_for('graph'),
+        });
+    }
+
+    method default($c) is Path {
+        $c.response.body( 'Page not found' );
+        $c.response.status(404);
+    }
+
+    method end($c) is ActionClass["RenderView"] {
+    }

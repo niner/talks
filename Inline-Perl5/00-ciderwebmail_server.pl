@@ -1,10 +1,12 @@
-#!/usr/bin/env perl
 
-BEGIN {
-    $ENV{CATALYST_SCRIPT_GEN} = 40;
-}
 
-use Catalyst::ScriptRunner;
-Catalyst::ScriptRunner->run('CiderWebmail', 'Server');
+    #!/usr/bin/env perl
 
-1;
+    BEGIN {
+        $ENV{CATALYST_SCRIPT_GEN} = 40;
+    }
+
+    use Catalyst::ScriptRunner;
+    Catalyst::ScriptRunner->run('CiderWebmail', 'Server');
+
+    1;

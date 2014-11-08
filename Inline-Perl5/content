@@ -3,7 +3,7 @@
 	I've been a Perl developer for 15 years.
 	About half of this time I've been following Perl 6 development.
 	I went to YAPCs and workshops and whenever jnthn or masak were attending, I've seen great talks about cool features in Perl 6.
-	I've been Wanting to try it for years, but always ran into some missing library like DBI, Catalyst, Mail::ImapClient, the Petal XML template module.
+	I've been Wanting to try it for years, but always ran into some missing library like DBI, Catalyst, Mail::IMAPClient, the Petal XML template module.
 	So I sat outside, watching from the fence and going back to work.
 
 	At this year's YAPC I decided to finally do something about it.
@@ -34,8 +34,7 @@
 
 4. Thank you!
 	We can now run CiderWebmail in Perl 6!
-        There's a bit of time left.
-        Do you want to see some bonus material or should we head to an early lunch?
+	I could stop here and simply call the job done.
 
         If you've seen my lightning talk at YAPC::EU, what I've showed so far was probably pretty boring, since this has worked a couple of hours after I've started writing Inline::Perl5.
         So what's new?
@@ -62,7 +61,7 @@
         Controllers for example are derived from Catalyst::Controller.
 
 8. <04-catalyst-controller.pl
-        Inheritance based APIs usually expect you to implement some methods.
+        These inheritance based APIs usually expect you to implement some methods.
         For Catalyst controllers those methods are the actions that handle web requests.
 
 	So how do we subclass a Perl 5 class in Perl 6?

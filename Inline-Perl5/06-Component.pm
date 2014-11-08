@@ -1,28 +1,29 @@
-package CatalystX::Perl6::Component;
 
-use Moose::Role;
+    package CatalystX::Perl6::Component;
 
-sub COMPONENT {
-    my ($class, $app, $args) = @_;
-    my $self = $class->new($app, $args);
-    my $p6 = $Perl6::ObjectCreator->create($class, $self);
-    bless $self, "Perl6::Object::$class"; # Explodes if we bless $p6 here!
-    return $p6;
-}
+    use Moose::Role;
 
-sub init_metaclass {
-    my ($class) = @_;
-
-    my $perl6_class = "Perl6::Object::$class";
-    {
-        no strict 'refs';
-        @{ $perl6_class . "::ISA" } = qw(Perl6::Object);
+    sub COMPONENT {
+        my ($class, $app, $args) = @_;
+        my $self = $class->new($app, $args);
+        my $p6 = $Perl6::ObjectCreator->create($class, $self);
+        bless $self, "Perl6::Object::$class"; # Explodes if we bless $p6 here!
+        return $p6;
     }
 
-    Class::MOP::store_metaclass_by_name(
-        $perl6_class,
-        $Perl6::ObjectCreator->create('Perl6::MOP', $class->meta)
-    );
-}
+    sub init_metaclass {
+        my ($class) = @_;
 
-1;
+        my $perl6_class = "Perl6::Object::$class";
+        {
+            no strict 'refs';
+            @{ $perl6_class . "::ISA" } = qw(Perl6::Object);
+        }
+
+        Class::MOP::store_metaclass_by_name(
+            $perl6_class,
+            $Perl6::ObjectCreator->create('Perl6::MOP', $class->meta)
+        );
+    }
+
+    1;
