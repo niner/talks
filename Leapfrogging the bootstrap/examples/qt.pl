@@ -16,7 +16,7 @@ constant DEFAULT = 0x00010000;
 
 class MessageBox does Inline::Python::PythonParent['PyQt4.QtGui', 'QWidget'] {
     method setup() {
-        self.resize(250, 150);
+        self.resize(500, 300);
         self.setWindowTitle('message box');
         self.show();
         self.center();
