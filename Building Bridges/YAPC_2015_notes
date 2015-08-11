@@ -24,3 +24,30 @@ Attention: {'!=', 'foo'} is a Block! {'!=' => 'foo'} needed in Perl 6
 Need a method after use v6-inline; to work?
 
 ~ 60 % slow down running the test suite. 1197 vs. 746 wallclock seconds
+
+
+
+I remember the birth of this millenium.
+I am quite surprised though that I do.
+Because back then, I did everything I could, so I wouldn't remember.
+In other words: I was drunk.
+I was shit faced.
+I was so drunk, I danced half naked on our village's market place.
+Fortunately for me, where I'm from, that is somewhat acceptable behavior for a yourth my age back then.
+It was 15 years ago after all.
+
+In the same year, when I was trying to get through puberty without too many scars, Perl 6 was announced.
+It took me some fiver years though, till I first heard about it.
+In 2005, safely arrived in adulthood and a bit calmer, I wasn't that excited about Perl 6.
+I though, ok, this will probably gonna be a nice update to the Perl 5 I know and love.
+They would probably remove some of the cruft and add some niceties.
+Bt all in all, I was quite satisfied with the Perl I knew.
+
+By about 2007, I was hooked.
+I had seen some presentations and Perl 6 shaped up to be both easier to get into but also insanely powerful.
+I also realized, that this really was a new language.
+
+I've seen Damian Conway's keynote where he told us that half his CPAN modules are just trying to bring features to Perl 5 that Perl 6 alreadyh as.
+Guess what? Shocking as this may come, but most of us, are not Damian Conway!
+And looking at at July's new CPAN modules, we find Marketplace::Ebay, Protocol::Matrix, App::Timestamper, DBD::Crate or ReCAPTCHAv2.
+That's loads and loads of special purpose modules that have nothing to do at all with improving the language but just happen to be written in it.
