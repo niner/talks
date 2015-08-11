@@ -1,0 +1,26 @@
+DBIx::Class: no more context! have to use search_rs if we want a result set
+how to pass a scalar ref for literal SQL? -> Captures: \('foo')
+Attention: positional params mandatory by default!
+Attention: => is Pair constructor. Only does the same when creating a hash, not when creating an array!
+Attention: {'!=', 'foo'} is a Block! {'!=' => 'foo'} needed in Perl 6
+14:43 <ribasushi> by having a p6 class extend DBIx::Class::ResultSet and then tell the DBIC tests (in p5-land) to use this class as the base for the test schema
+14:44 <ribasushi> so you have p5test => methodcall => p6 class => handoff via around()-like => p5 base class => p5 code
+14:44 <nine> Oh yes, indeed!
+14:45 <ribasushi> and because the entirety of DBIC is designed to do that 
+14:45 <ribasushi> you can hook any of the classes and "divert" its methods/arguments to make sure it all still works
+14:46 <ribasushi> s/any of the classes/Schema, Storage, ResultSet, Result/
+14:46 <nine> It's a shame, many people have no idea, how powerful DBIC really is.
+14:47 <ribasushi> I know, sadly I fail to explain this "to the masses"
+14:49 <ribasushi> e.g. https://github.com/dbsrgits/dbix-class/commit/8b60b921#diff-7187d12eee0941e03bffaa08d3856061
+14:49 <ribasushi> this is the only *actual* change that was needed to make all tests run via the replicated extension (two connections one reader one writer) on a specific ENVVAR
+14:49 <ribasushi> the rest of the commit is fixups for some of the tests where breaking this assumption is fatal
+14:50 <ribasushi> everything else (the other ~250 tests) stayed unchanged
+14:51 <nine> amazing
+14:52 <ribasushi> anyway - this seems to me as a prime hookup point for more ip5 testing
+
+5 hours lost because of URI not digesting a mix of UTF-8 encoded and Unicode strings provided by Geo::Coder::OSM
+
+
+Need a method after use v6-inline; to work?
+
+~ 60 % slow down running the test suite. 1197 vs. 746 wallclock seconds
