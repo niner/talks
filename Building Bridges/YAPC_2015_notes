@@ -24,6 +24,7 @@ Attention: {'!=', 'foo'} is a Block! {'!=' => 'foo'} needed in Perl 6
 Need a method after use v6-inline; to work?
 
 ~ 60 % slow down running the test suite. 1197 vs. 746 wallclock seconds
+1.113 * 194 seconds startup penalty => 24 % runtime slowdown
 
 Examples: Spreadsheet::ParseExcel and Excel::Writer::XLSX
 
