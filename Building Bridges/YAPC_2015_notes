@@ -25,6 +25,7 @@ Need a method after use v6-inline; to work?
 
 ~ 60 % slow down running the test suite. 1197 vs. 746 wallclock seconds
 
+Examples: Spreadsheet::ParseExcel and Excel::Writer::XLSX
 
 
 I remember the birth of this millenium.
