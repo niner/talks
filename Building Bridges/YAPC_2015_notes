@@ -46,10 +46,62 @@ They would probably remove some of the cruft and add some niceties.
 Bt all in all, I was quite satisfied with the Perl I knew.
 
 By about 2007, I was hooked.
-I had seen some presentations and Perl 6 shaped up to be both easier to get into but also insanely powerful.
-I also realized, that this really was a new language.
+I had seen some presentations and Perl 6 shaped up to be both easier to get into and insanely powerful at the same time.
+I also realized, that this really was a completely new language.
 
-I've seen Damian Conway's keynote where he told us that half his CPAN modules are just trying to bring features to Perl 5 that Perl 6 alreadyh as.
-Guess what? Shocking as this may come, but most of us, are not Damian Conway!
-And looking at at July's new CPAN modules, we find Marketplace::Ebay, Protocol::Matrix, App::Timestamper, DBD::Crate or ReCAPTCHAv2.
+I've seen Damian Conway's keynote where he told us that half his CPAN modules are just trying to bring features to Perl 5 that Perl 6 already has.
+Guess what? Shocking as this may come, but most of us, are not actually Damian Conway!
+And looking just at at July's new CPAN modules, we find Marketplace::Ebay, Protocol::Matrix, App::Timestamper, DBD::Crate or ReCAPTCHAv2.
 That's loads and loads of special purpose modules that have nothing to do at all with improving the language but just happen to be written in it.
+
+So Damian's message, that half of CPAN is obsolete anyway and the other half would surely be rewritten soonish was maybe a bit too optimistic.
+And that's exactly what I've experienced.
+
+In the past couple of years, I've seen more talks about Perl 6 and read about it and was itching to try it out.
+But whenever I thought about trying it out, I hit a wall.
+
+And I don't mean this Wall!
+
+More like a brick wall.
+And it was always the same brick wall.
+I know, because it still had my marks from previous tries.
+The wall I'm talking about is missing modules.
+The huge non-language-improving part of CPAN I already mentioned.
+At first it was database access.
+Then template modules,
+Web frameworks,
+IMAP client,
+all the things I'm used to as a Perl 5 programmer.
+
+And not to mention the quarter of a million of LOC that I'm sitting on at work that we're maintaining.
+We start new projects about twice a decade. And I'm actually trying to reduce that further.
+
+It's like I can only have either a cool new language, or all the power of CPAN.
+There's a rift there and it not only separates our code bases, but our communities also.
+You're either a Perl 5 programmer with all your real world connections, or one of the Perl 6 crazies with their high floating visions.
+For a time it looked even more dire.
+There wes some hostility between the two sides.
+Thankfully, we since have overcome this, and found some state of peaceful coexistence.
+There's even been some exchange of ideas.
+But the sides are still quite clearly kept apart.
+
+One outcome of this exchange of ideas has been sane and powerful (meta-object) models in both Perl 5 and Perl 6.
+Just imagine what we could still gain by an even more free flow of ideas.
+When instead of being content with living side by side and occasionally talking to each other, we would actually live together.
+
+I for one would love to live in such a future.
+Well, we will not get there over night.
+But I can show you one important step in this direction today.
+This step will remove the most divisive decision you had to make previously: the question whether you want to use the powerful new language or the massive amounts of pre-existing code.
+
+My goal for today is, that after this talk, you will be able to go out and give Perl 6 a try.
+That missing modules or existing code bases no longer keep you from experiencing this great language.
+Or if you consider yourself a 6er, that you will no longer restrict yourself to what's possible with the currently existing module ecosystem.
+Because as Perl programmers, we are usually not content with having a cake. Looking at a lot of bellies, we really want to eat it, too :)
+
+So how do I want to accomplish that?
+
+In one of the talks I mentioned earlier, I learned about NativeCall.
+NativeCall is Perl 6's way to access system libraries.
+Think Perl 5's XS, but without the horror in your voice. The "ooh XS".
+
