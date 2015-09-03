@@ -1,16 +1,15 @@
-#!perl6
+#!perl5
 
 use Bot::BasicBot:from<Perl5>;
 
 class P6Bot is Bot::BasicBot {
-    method can($method) {
-        return 1;
-    }
-
     method said(%statement) {
-        self.reply($%statement, "Hullo {%statement<who>}!") if %statement<body> eq 'Hi bot!';
-        self.reply($%statement, "I'm the first Perl 6 bot based on Bot::BasicBot!") if %statement<body> eq 'bot who are you?';
-        self.shutdown('leaving...') if %statement<body> eq 'bot quit';
+        self.reply($%statement, "Hullo {%statement<who>}!")
+            if %statement<body> eq 'Hi bot!';
+        self.reply($%statement, "I'm the first Perl 6 bot based on Bot::BasicBot!")
+            if %statement<body> eq 'bot who are you?';
+        self.shutdown('leaving...')
+            if %statement<body> eq 'bot quit';
     }
 }
 

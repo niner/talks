@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Konsole output</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+</head>
+<body>
+<div>
+<span style="font-family:monospace"><span style="color:#000000;background-color:#ffffff;">
+</span><br /><span style="color:#b26818;background-color:#ffffff;">=head2</span><span style="color:#b21818;background-color:#ffffff;"> title</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br /><span style="color:#b218b2;background-color:#ffffff;"> &#160;data_type: 'text'</span><span style="color:#000000;background-color:#ffffff;">
+</span><br /><span style="color:#b218b2;background-color:#ffffff;"> &#160;is_nullable: 0</span><span style="color:#000000;background-color:#ffffff;">
+</span><br /><span style="color:#b218b2;background-color:#ffffff;"> &#160;original: {data_type =&gt; "varchar"}</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br /><span style="color:#b26818;background-color:#ffffff;">=cut</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br />__PACKAGE__<span style="color:#18b2b2;background-color:#ffffff;">-&gt;add_columns</span><span style="color:#000000;background-color:#ffffff;">(
+</span><br /> &#160;<span style="color:#b21818;background-color:#ffffff;">"id"</span><span style="color:#000000;background-color:#ffffff;">,
+</span><br /> &#160;{
+<br /> &#160;&#160;&#160;<span style="color:#b21818;background-color:#ffffff;">data_type</span><span style="color:#000000;background-color:#ffffff;"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;=&gt; </span><span style="color:#b21818;background-color:#ffffff;">"integer"</span><span style="color:#000000;background-color:#ffffff;">,
+</span><br /> &#160;&#160;&#160;<span style="color:#b21818;background-color:#ffffff;">is_auto_increment</span><span style="color:#000000;background-color:#ffffff;"> =&gt; </span><span style="color:#b21818;background-color:#ffffff;">1</span><span style="color:#000000;background-color:#ffffff;">,
+</span><br /> &#160;&#160;&#160;<span style="color:#b21818;background-color:#ffffff;">is_nullable</span><span style="color:#000000;background-color:#ffffff;"> &#160;&#160;&#160;&#160;&#160;&#160;=&gt; </span><span style="color:#b21818;background-color:#ffffff;">0</span><span style="color:#000000;background-color:#ffffff;">,
+</span><br /> &#160;&#160;&#160;<span style="color:#b21818;background-color:#ffffff;">sequence</span><span style="color:#000000;background-color:#ffffff;"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;=&gt; </span><span style="color:#b21818;background-color:#ffffff;">"cds_id_seq"</span><span style="color:#000000;background-color:#ffffff;">,
+</span><br /> &#160;},
+<br /> &#160;<span style="color:#b21818;background-color:#ffffff;">"artist_id"</span><span style="color:#000000;background-color:#ffffff;">,
+</span><br /> &#160;{ <span style="color:#b21818;background-color:#ffffff;">data_type</span><span style="color:#000000;background-color:#ffffff;"> =&gt; </span><span style="color:#b21818;background-color:#ffffff;">"integer"</span><span style="color:#000000;background-color:#ffffff;">, </span><span style="color:#b21818;background-color:#ffffff;">is_foreign_key</span><span style="color:#000000;background-color:#ffffff;"> =&gt; </span><span style="color:#b21818;background-color:#ffffff;">1</span><span style="color:#000000;background-color:#ffffff;">, </span><span style="color:#b21818;background-color:#ffffff;">is_nullable</span><span style="color:#000000;background-color:#ffffff;"> =&gt; </span><span style="color:#b21818;background-color:#ffffff;">0</span><span style="color:#000000;background-color:#ffffff;"> },
+</span><br /> &#160;<span style="color:#b21818;background-color:#ffffff;">"title"</span><span style="color:#000000;background-color:#ffffff;">,
+</span><br /> &#160;{
+<br /> &#160;&#160;&#160;<span style="color:#b21818;background-color:#ffffff;">data_type</span><span style="color:#000000;background-color:#ffffff;"> &#160;&#160;=&gt; </span><span style="color:#b21818;background-color:#ffffff;">"text"</span><span style="color:#000000;background-color:#ffffff;">,
+</span><br /> &#160;&#160;&#160;<span style="color:#b21818;background-color:#ffffff;">is_nullable</span><span style="color:#000000;background-color:#ffffff;"> =&gt; </span><span style="color:#b21818;background-color:#ffffff;">0</span><span style="color:#000000;background-color:#ffffff;">,
+</span><br /> &#160;&#160;&#160;<span style="color:#b21818;background-color:#ffffff;">original</span><span style="color:#000000;background-color:#ffffff;"> &#160;&#160;&#160;=&gt; { </span><span style="color:#b21818;background-color:#ffffff;">data_type</span><span style="color:#000000;background-color:#ffffff;"> =&gt; </span><span style="color:#b21818;background-color:#ffffff;">"varchar"</span><span style="color:#000000;background-color:#ffffff;"> },
+</span><br /> &#160;},
+<br />);
+<br />
+<br /><span style="color:#b26818;background-color:#ffffff;">=head1</span><span style="color:#b21818;background-color:#ffffff;"> PRIMARY KEY</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br /><span style="color:#b26818;background-color:#ffffff;">=over</span><span style="color:#000000;background-color:#ffffff;"> </span><span style="color:#b21818;background-color:#ffffff;">4</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br /><span style="color:#b26818;background-color:#ffffff;">=item</span><span style="color:#b21818;background-color:#ffffff;"> * </span><span style="color:#18b2b2;background-color:#ffffff;">L&lt;/id&gt;</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br /><span style="color:#b26818;background-color:#ffffff;">=back</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br /><span style="color:#b26818;background-color:#ffffff;">=cut</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br />__PACKAGE__<span style="color:#18b2b2;background-color:#ffffff;">-&gt;set_primary_key</span><span style="color:#000000;background-color:#ffffff;">(</span><span style="color:#b21818;background-color:#ffffff;">"id"</span><span style="color:#000000;background-color:#ffffff;">);
+</span><br />
+<br /><span style="color:#b26818;background-color:#ffffff;">=head1</span><span style="color:#b21818;background-color:#ffffff;"> RELATIONS</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br /><span style="color:#b26818;background-color:#ffffff;">=head2</span><span style="color:#b21818;background-color:#ffffff;"> artist</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br />Type: belongs_to
+<br />
+<br />Related object: <span style="color:#18b2b2;background-color:#ffffff;">L&lt;DBIC::Demo::Result::Artist&gt;</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br /><span style="color:#b26818;background-color:#ffffff;">=cut</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br />__PACKAGE__<span style="color:#18b2b2;background-color:#ffffff;">-&gt;belongs_to</span><span style="color:#000000;background-color:#ffffff;">(
+</span><br /> &#160;<span style="color:#b21818;background-color:#ffffff;">"artist"</span><span style="color:#000000;background-color:#ffffff;">,
+</span><br /> &#160;<span style="color:#b21818;background-color:#ffffff;">"DBIC::Demo::Result::Artist"</span><span style="color:#000000;background-color:#ffffff;">,
+</span><br /> &#160;{ <span style="color:#b21818;background-color:#ffffff;">id</span><span style="color:#000000;background-color:#ffffff;"> =&gt; </span><span style="color:#b21818;background-color:#ffffff;">"artist_id"</span><span style="color:#000000;background-color:#ffffff;"> },
+</span><br /> &#160;{ <span style="color:#b21818;background-color:#ffffff;">is_deferrable</span><span style="color:#000000;background-color:#ffffff;"> =&gt; </span><span style="color:#b21818;background-color:#ffffff;">0</span><span style="color:#000000;background-color:#ffffff;">, </span><span style="color:#b21818;background-color:#ffffff;">on_delete</span><span style="color:#000000;background-color:#ffffff;"> =&gt; </span><span style="color:#b21818;background-color:#ffffff;">"NO ACTION"</span><span style="color:#000000;background-color:#ffffff;">, </span><span style="color:#b21818;background-color:#ffffff;">on_update</span><span style="color:#000000;background-color:#ffffff;"> =&gt; </span><span style="color:#b21818;background-color:#ffffff;">"NO ACTION"</span><span style="color:#000000;background-color:#ffffff;"> },
+</span><br />);
+<br />
+<br />
+<br /><span style="color:#1818b2;background-color:#ffffff;"># Created by DBIx::Class::Schema::Loader v0.07043 @ 2015-09-01 13:18:52</span><span style="color:#000000;background-color:#ffffff;">
+</span><br /><span style="color:#1818b2;background-color:#ffffff;"># DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:7kPADFeDHuCnkZ2VDAhaZg</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br /><span style="color:#b26818;background-color:#ffffff;">use </span><span style="color:#000000;background-color:#ffffff;">v6::inline </span><span style="color:#b21818;background-color:#ffffff;">constructors</span><span style="color:#000000;background-color:#ffffff;"> =&gt; [</span><span style="color:#b21818;background-color:#ffffff;">qw(new inflate_result)</span><span style="color:#000000;background-color:#ffffff;">];
+</span><br />
+<br />method full_title() <span style="color:#000000;background-color:#18b2b2;">{</span><span style="color:#000000;background-color:#ffffff;">
+</span><br /> &#160;&#160;&#160;<span style="color:#b21818;background-color:#ffffff;">"{</span><span style="color:#18b2b2;background-color:#ffffff;">$.</span><span style="color:#b21818;background-color:#ffffff;">artist.name} - {</span><span style="color:#18b2b2;background-color:#ffffff;">$.</span><span style="color:#b21818;background-color:#ffffff;">title}"</span><span style="color:#000000;background-color:#ffffff;">
+</span><br /><span style="color:#000000;background-color:#18b2b2;">}</span><span style="color:#000000;background-color:#ffffff;">
+</span><br /> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;102,1 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Bot<br />
+<br /></span></div>
+</body>
+</html>

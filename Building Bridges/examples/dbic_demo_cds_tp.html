@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Konsole output</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+</head>
+<body>
+<div>
+<span style="font-family:monospace"><span style="color:#b26818;background-color:#ffffff;">use utf8</span><span style="color:#000000;background-color:#ffffff;">;
+</span><br /><span style="color:#b26818;background-color:#ffffff;">package</span><span style="color:#18b218;background-color:#ffffff;"> DBIC::Demo::Result::Cd</span><span style="color:#000000;background-color:#ffffff;">;
+</span><br />
+<br /><span style="color:#1818b2;background-color:#ffffff;"># Created by DBIx::Class::Schema::Loader</span><span style="color:#000000;background-color:#ffffff;">
+</span><br /><span style="color:#1818b2;background-color:#ffffff;"># DO NOT MODIFY THE FIRST PART OF THIS FILE</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br /><span style="color:#b26818;background-color:#ffffff;">=head1</span><span style="color:#b21818;background-color:#ffffff;"> NAME</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br />DBIC::Demo::Result::Cd
+<br />
+<br /><span style="color:#b26818;background-color:#ffffff;">=cut</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br /><span style="color:#b26818;background-color:#ffffff;">use strict</span><span style="color:#000000;background-color:#ffffff;">;
+</span><br /><span style="color:#b26818;background-color:#ffffff;">use warnings</span><span style="color:#000000;background-color:#ffffff;">;
+</span><br />
+<br /><span style="color:#b26818;background-color:#ffffff;">use base</span><span style="color:#000000;background-color:#ffffff;"> </span><span style="color:#b21818;background-color:#ffffff;">'DBIx::Class::Core'</span><span style="color:#000000;background-color:#ffffff;">;
+</span><br />
+<br /><span style="color:#b26818;background-color:#ffffff;">=head1</span><span style="color:#b21818;background-color:#ffffff;"> TABLE: </span><span style="color:#18b2b2;background-color:#ffffff;">C&lt;cds&gt;</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br /><span style="color:#b26818;background-color:#ffffff;">=cut</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br />__PACKAGE__<span style="color:#18b2b2;background-color:#ffffff;">-&gt;table</span><span style="color:#000000;background-color:#ffffff;">(</span><span style="color:#b21818;background-color:#ffffff;">"cds"</span><span style="color:#000000;background-color:#ffffff;">);
+</span><br />
+<br /><span style="color:#b26818;background-color:#ffffff;">=head1</span><span style="color:#b21818;background-color:#ffffff;"> ACCESSORS</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br /><span style="color:#b26818;background-color:#ffffff;">=head2</span><span style="color:#b21818;background-color:#ffffff;"> id</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br /><span style="color:#b218b2;background-color:#ffffff;"> &#160;data_type: 'integer'</span><span style="color:#000000;background-color:#ffffff;">
+</span><br /><span style="color:#b218b2;background-color:#ffffff;"> &#160;is_auto_increment: 1</span><span style="color:#000000;background-color:#ffffff;">
+</span><br /><span style="color:#b218b2;background-color:#ffffff;"> &#160;is_nullable: 0</span><span style="color:#000000;background-color:#ffffff;">
+</span><br /><span style="color:#b218b2;background-color:#ffffff;"> &#160;sequence: 'cds_id_seq'</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br /><span style="color:#b26818;background-color:#ffffff;">=head2</span><span style="color:#b21818;background-color:#ffffff;"> artist_id</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br /><span style="color:#b218b2;background-color:#ffffff;"> &#160;data_type: 'integer'</span><span style="color:#000000;background-color:#ffffff;">
+</span><br /><span style="color:#b218b2;background-color:#ffffff;"> &#160;is_foreign_key: 1</span><span style="color:#000000;background-color:#ffffff;">
+</span><br /><span style="color:#b218b2;background-color:#ffffff;"> &#160;is_nullable: 0</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br /><span style="color:#b26818;background-color:#ffffff;">=head2</span><span style="color:#b21818;background-color:#ffffff;"> title</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br /><span style="color:#b218b2;background-color:#ffffff;"> &#160;data_type: 'text'</span><span style="color:#000000;background-color:#ffffff;">
+</span><br /><span style="color:#b218b2;background-color:#ffffff;"> &#160;is_nullable: 0</span><span style="color:#000000;background-color:#ffffff;">
+</span><br /><span style="color:#b218b2;background-color:#ffffff;"> &#160;original: {data_type =&gt; "varchar"}</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br /><span style="color:#b26818;background-color:#ffffff;">=cut</span><span style="color:#000000;background-color:#ffffff;">
+</span><br />
+<br />__PACKAGE__<span style="color:#18b2b2;background-color:#ffffff;">-&gt;add_columns</span><span style="color:#000000;background-color:#ffffff;">(
+</span><br /> &#160;<span style="color:#b21818;background-color:#ffffff;">"id"</span><span style="color:#000000;background-color:#ffffff;">,
+</span><br /> &#160;{
+<br /> &#160;&#160;&#160;<span style="color:#b21818;background-color:#ffffff;">data_type</span><span style="color:#000000;background-color:#ffffff;"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;=&gt; </span><span style="color:#b21818;background-color:#ffffff;">"integer"</span><span style="color:#000000;background-color:#ffffff;">,
+</span><br /> &#160;&#160;&#160;<span style="color:#b21818;background-color:#ffffff;">is_auto_increment</span><span style="color:#000000;background-color:#ffffff;"> =&gt; </span><span style="color:#b21818;background-color:#ffffff;">1</span><span style="color:#000000;background-color:#ffffff;">,
+</span><br /> &#160;&#160;&#160;<span style="color:#b21818;background-color:#ffffff;">is_nullable</span><span style="color:#000000;background-color:#ffffff;"> &#160;&#160;&#160;&#160;&#160;&#160;=&gt; </span><span style="color:#b21818;background-color:#ffffff;">0</span><span style="color:#000000;background-color:#ffffff;">,
+</span><br /> &#160;&#160;&#160;<span style="color:#b21818;background-color:#ffffff;">sequence</span><span style="color:#000000;background-color:#ffffff;"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;=&gt; </span><span style="color:#b21818;background-color:#ffffff;">"cds_id_seq"</span><span style="color:#000000;background-color:#ffffff;">,
+</span><br /> &#160;},
+<br /> &#160;<span style="color:#b21818;background-color:#ffffff;">"artist_id"</span><span style="color:#000000;background-color:#ffffff;">,
+</span><br /> &#160;{ <span style="color:#b21818;background-color:#ffffff;">data_type</span><span style="color:#000000;background-color:#ffffff;"> =&gt; </span><span style="color:#b21818;background-color:#ffffff;">"integer"</span><span style="color:#000000;background-color:#ffffff;">, </span><span style="color:#b21818;background-color:#ffffff;">is_foreign_key</span><span style="color:#000000;background-color:#ffffff;"> =&gt; </span><span style="color:#b21818;background-color:#ffffff;">1</span><span style="color:#000000;background-color:#ffffff;">, </span><span style="color:#b21818;background-color:#ffffff;">is_nullable</span><span style="color:#000000;background-color:#ffffff;"> =&gt; </span><span style="color:#b21818;background-color:#ffffff;">0</span><span style="color:#000000;background-color:#ffffff;"> },
+</span><br /> &#160;<span style="color:#b21818;background-color:#ffffff;">"title"</span><span style="color:#000000;background-color:#ffffff;">,
+</span><br /> &#160;{
+<br /> &#160;&#160;&#160;<span style="color:#b21818;background-color:#ffffff;">data_type</span><span style="color:#000000;background-color:#ffffff;"> &#160;&#160;=&gt; </span><span style="color:#b21818;background-color:#ffffff;">"text"</span><span style="color:#000000;background-color:#ffffff;">,
+</span><br /> &#160;&#160;&#160;<span style="color:#b21818;background-color:#ffffff;">is_nullable</span><span style="color:#000000;background-color:#ffffff;"> =&gt; </span><span style="color:#b21818;background-color:#ffffff;">0</span><span style="color:#000000;background-color:#ffffff;">,
+</span><br /> &#160;&#160;&#160;<span style="color:#b21818;background-color:#ffffff;">original</span><span style="color:#000000;background-color:#ffffff;"> &#160;&#160;&#160;=&gt; { </span><span style="color:#b21818;background-color:#ffffff;">data_type</span><span style="color:#000000;background-color:#ffffff;"> =&gt; </span><span style="color:#b21818;background-color:#ffffff;">"varchar"</span><span style="color:#000000;background-color:#ffffff;"> },
+</span><br /> &#160;},
+<br />);
+<br />
+<br /><span style="color:#b26818;background-color:#ffffff;">=head1</span><span style="color:#b21818;background-color:#ffffff;"> PRIMARY KEY</span><span style="color:#000000;background-color:#ffffff;">
+</span><br /> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;39,1 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Top<br />
+<br /></span></div>
+</body>
+</html>
