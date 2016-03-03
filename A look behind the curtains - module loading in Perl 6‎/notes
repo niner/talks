@@ -1,0 +1,86 @@
+We did it!
+The great experiment came to conclusion.
+We took 15 years, longer than anyone ever before to undisputably proof, that the student syndrome is unavoidable.
+15 years of time to complete the project and still when the self-picked deadline arrived, we had to rush to get the final pieces in place.
+
+One of those pieces was a completely redesigned framework for module installation and loading.
+Unfortunately it was also one of the biggest source of pain right after the big release.
+How comes?
+Why did it take 15 years to design and implement this module framework?
+Shouldn't this be a rather mundane part compared to the rest of Perl 6?
+
+Before I answer those questions, let's have a look at how languages like Perl 5 or Python handle module installation and loading.
+In those languages, module names have a 1:1 relation with file system paths:
+ACME::Foo::Bar -> ACME/Foo/Bar.pm
+os.path -> os/path.py
+
+Note that these are relative paths.
+Both Python and Perl 5 use a list of include paths, to complete these paths.
+In Perl 5 they are available in the global @INC array.
+Each of these include directories are checked for whether they contain a realtive path determined from the module name.
+If the shoe fits, the file is loaded.
+
+Of course that's a bit of a simplified version.
+Both languages support caching compiled versions of modules.
+So instead of just ACME/Foo/Bar.pm Perl 5 first looks for an ACME/Foo/Bar.pmc file.
+So does Python with .pyc files.
+While the support is there, to my knowledge almost no one uses this possibility in Perl 5 while in Python it's quite common to precompile modules on installation.
+
+Module installation in both cases means mostly copying files into locations determined by the same simple mapping.
+For Python we just add the compilation step and store the results alongside the modules.
+For Perl 5 we add so called packlist files that just list the full paths of all files installed this way supposedly for making uninstall possible.
+
+This system is easy to explain, easy to understand, simple and robust.
+In other words, they sound pretty much perfect.
+So Perl 6 should probably just follow these well established examples and do the same, shouldn't it?
+
+I would say "yes", if it weren't for some features that they lack and that Perl 6 wants to provide:
+* Unicode module names
+* Modules published under the same names by different authors
+* Having multiple versions of a module installed
+
+Why would you want those?
+Well the first one is pretty easy: it's the year 2016 and one of these days we have to accept that 2.3 billion people on this earth do not use a writing system that's based on Latin script.
+Of the 4.9 billion people using a Latin based alphabet, how many do you think speak a language that can be written with only 26 characters?
+The answer is: 0.
+Yes, even English has diacritics for many loan words, at least if they're written correctly.
+With a 1:1 relation between module names and file system paths, you enter a world of pain once you try to support Unicode on multiple platforms and file systems.
+
+Then there's sharing module names between multiple authors.
+This one may or may not work out well in practice.
+I can imagine using it for example for publishing a module with some fix until the original author includes the fix in the "official" version, because frankly, I'm a bit tired of pulling foreign modules into our VCS and sharing only patches via bug trackers because some maintainer only has time for maintaining once or twice a year.
+I don't blame them and I don't claim that I'm "better" in any way.
+At the same time, this is a real issue that warrants fixing.
+
+Finally there's multiple versions.
+There was a time span of almost half a year when we had encoding issues in our bug tracker, because our own application required the newest Postgres DBI driver while the bug tracker was not yet prepared for the incompatible changes.
+Usually people in such situations reach for local::lib or containers or some home grown workarounds.
+They all have their own disadvantages.
+None of them would be necessary if applications could just say, hey I need good old, trusty version 2.9 or maybe a bug fix release of that branch.
+
+If you had any hopes of continuing using the simple name mapping solution, you probably gave up at the versioning requirement.
+Because, how would you find version 3.2 of a module when looking for a 2.9 or higher?
+Any ideas?
+
+Popular ideas included collecting information about installed modules in JSON files and as those turned out to be toe nail growing slow, putting the meta data into SQLite databases.
+
+
+
+Perl5: easy. Map module name to path, search all include directories, load file, compile and run it
+Perl6: precompilation....
+
+3 parts: module loading, module management, installer (panda, zef)
+
+auth feature: usefull for temporarily providing a patched version of a module
+
+Repository::Panda
+Repository::DependencyTracker
+
+
+
+Questions to answer:
+19:46 < timotimo> "how do i debug stuff when it goes wrong", perhaps? "what parts can be replaced by user-supplied code?"?
+19:46 < timotimo> "what makes it more interesting/powerful than in perl5 or python, for example"
+19:52 < timotimo> "how did you learn from other languages' module systems"?
+19:54 < perlpilot> nine_: I'd want to know what works today and what's broken.  And if there's a really interesting story about why it's broken, maybe that too.
+19:57 < timotimo> don't forget to point out places where you could drop in cool things like "well, i actually distributed my own moar executable with a zip file concatenated to it which contains all the bytecode" or something
