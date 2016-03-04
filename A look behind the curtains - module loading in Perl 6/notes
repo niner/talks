@@ -1,10 +1,12 @@
+00:00
+
 We did it!
 The great experiment came to conclusion.
 We took 15 years, longer than anyone ever before to undisputably proof, that the student syndrome is unavoidable.
 15 years of time to complete the project and still when the self-picked deadline arrived, we had to rush to get the final pieces in place.
 
 One of those pieces was a completely redesigned framework for module installation and loading.
-Unfortunately it was also one of the biggest source of pain right after the big release.
+Unfortunately it was also one of the biggest sources of pain right after the big release.
 How comes?
 Why did it take 15 years to design and implement this module framework?
 Shouldn't this be a rather mundane part compared to the rest of Perl 6?
@@ -31,8 +33,10 @@ For Python we just add the compilation step and store the results alongside the 
 For Perl 5 we add so called packlist files that just list the full paths of all files installed this way supposedly for making uninstall possible.
 
 This system is easy to explain, easy to understand, simple and robust.
-In other words, they sound pretty much perfect.
+In other words, it sounds pretty much perfect.
 So Perl 6 should probably just follow these well established examples and do the same, shouldn't it?
+
+03:00
 
 I would say "yes", if it weren't for some features that they lack and that Perl 6 wants to provide:
 * Unicode module names
@@ -62,7 +66,104 @@ If you had any hopes of continuing using the simple name mapping solution, you p
 Because, how would you find version 3.2 of a module when looking for a 2.9 or higher?
 Any ideas?
 
+06:00
+
 Popular ideas included collecting information about installed modules in JSON files and as those turned out to be toe nail growing slow, putting the meta data into SQLite databases.
+However, these ideas can be easily shot down by introducing another requirement: distribution packages.
+
+Packages for Linux distributions are mostly just archives containing some files plus some meta data.
+Ideally the process of installing such a package means just unpacking the files and updating the central package database.
+Uninstalling means deleting the files installed this way and again updating the package database.
+Changing existing files on install and uninstall makes packagers' lives much harder, so we really want to avoid that.
+Also the names of the installed files may not depend on what was previously installed.
+Me must know at the time of packaging what the names are going to be.
+
+Step 0 in getting us back out of this mess is some definitions:
+A full module name in Perl 6, a so called long-name consists of the short-name, auth, version and API:
+Foo::Bar:auth<cpan:nine>:ver<0.3>:api<1>
+On the other side, the thing you install is usually not a single module but a distribution which probably contains one or more modules.
+Distribution names work just the same way as module names.
+Indeed, distributions often will just be called after their main module.
+An important property of distributions is that they are immutable.
+Foo:auth<nine>:ver<0.3>:api<1> will always be the name for exactly the same code.
+
+08:00
+
+When requesting a module, you will usually either do it via this exact long name, or you say something along the lines of "give me a module that matches this filter".
+Such a filter is given by way of a CompUnit::DependencySpecification object which has fields for: short-name, auth-matcher, version-matcher and api-matcher.
+When looking through candidates, Perl 6 will smart match a module's long name against this DependencySpecification or rather the individual fields against the individual matchers.
+Thus a matcher may be some concrete value, a version range or even a regex.
+
+As previously mentioned, loading the meta data of all installed distributions would be prohibitively slow.
+Instead, we use the file system as a kind of database.
+We store not only a distribution's files but also create indices for speeding up lookups.
+One of these indices comes in the form of directories named after the short-name of installed modules.
+However thanks to the Unicode issues mentioned, we cannot just use the module names directly.
+This is where the infamous SHA-1 hashes enter the game.
+The directory names are the ASCII encoded SHA-1 hashes of the UTF-8 encoded module short-names.
+
+10:00
+
+In these directories we find one file per distribution that contains a module with a matching short name.
+These files again contain the ID of the dist and the other fields that make up the long name: auth, version and api.
+So by reading these files we have a usually short list of auth-version-api triplets which we can match against our DependencySpecification.
+We end up with the winning dist's ID, which we use to look up the meta data, stored in a JSON encoded file.
+This meta data contains the name of the file in the sources/ directory containing the requested module's code.
+This is what we can load.
+
+11:00
+
+Finding names for source files is again a bit tricky, as there's still the Unicode issue and in addition the same relative file names may be used by different installed distributions (think versions).
+So for now at least, we use SHA-1 hashes of the long-names.
+
+It's not only source files that are stored and found this way.
+Distributions may also contain arbitrary resource files.
+These could be images, language files or shared libraries that are compiled on installation.
+They can be accessed from within the module through the %?RESOURCES hash: %?RESOURCES<libraries/p5helper>
+As long as you stick to the standard layout conventions for distributions, this even works during development without installing anything.
+
+12:00
+
+So far, we've looked at loading modules from source files.
+However, just the same as Perl 5 and Python, Perl 6 supports precompiling modules into binaries.
+While this is rarely used in Perl 5 and a nice bonus in Python, in Perl 6 it's almost essential.
+At least, if you do not want to wait for a minute or two while loading a moderately sized code base.
+Yes, compilation of Perl 6 code is slow. It takes forever.
+
+Luckily precompilation at least works quite well in most cases.
+Yet it comes with its own set of challenges when loading modules from byte code files.
+Loading a single module is easy.
+Fun starts when that module has dependencies and those dependencies have again dependencies of their own.
+
+When loading a precompiled file in Perl 6 we need to load the precompiled files of all its dependencies, too.
+And those dependencies *must* be precompiled, we cannot load them from source files.
+Even worse, the precomp files of the dependencies *must* be exactly the same files we used for precompiling our module in the first place.
+To top it off, precompiled files work only with the exact perl6 binary, that was used for compilation.
+
+All of that would still be quite manageable if it weren't for an additional requirement: as a user you expect a new version of a module you just installed to be actually used, don't you?
+In other words: if you upgrade a dependency of a precompiled module, we have to detect this and precompile the module again with the new dependency.
+
+13:45
+
+So what does the current attempt at solving all these challenges look like?
+In Perl 5 and Python you deal with include paths, pointing to file system directories.
+In Perl 6 we call such directories "repositories" and each of these repositories is governed by an object that does the CompUnit::Repository role.
+Instead of an INC array, there's the $*REPO variable.
+It contains a single repository object.
+This object has a "next-repo" attribute that may contain another repository.
+In other words: repositories are managed as a linked list.
+The important difference to the traditional array is, that when going through the list, each object has a say in whether to pass along a request to the next-repo or not.
+
+<Talk about need>
+
+Rakudo comes with several classes that can be used for repositories.
+The most important ones are the CompUnit::Repository::FileSystem and CompUnit::Repository::Installation.
+The latter uses the layout I described earlier.
+The FileSystem repo is meant to be used during module development and actually works just like Perl 5 when looking for a module.
+It doesn't support versions or auths and simply maps the short-name to a file system path.
+
+
+
 
 
 
