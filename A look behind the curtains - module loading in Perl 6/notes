@@ -1,5 +1,3 @@
-00:00
-
 We did it!
 The great experiment came to conclusion.
 We took 15 years, longer than anyone ever before to undisputably proof, that the student syndrome is unavoidable.
@@ -29,14 +27,10 @@ So does Python with .pyc files.
 While the support is there, to my knowledge almost no one uses this possibility in Perl 5 while in Python it's quite common to precompile modules on installation.
 
 Module installation in both cases means mostly copying files into locations determined by the same simple mapping.
-For Python we just add the compilation step and store the results alongside the modules.
-For Perl 5 we add so called packlist files that just list the full paths of all files installed this way supposedly for making uninstall possible.
 
 This system is easy to explain, easy to understand, simple and robust.
 In other words, it sounds pretty much perfect.
 So Perl 6 should probably just follow these well established examples and do the same, shouldn't it?
-
-03:00
 
 I would say "yes", if it weren't for some features that they lack and that Perl 6 wants to provide:
 * Unicode module names
@@ -66,8 +60,6 @@ If you had any hopes of continuing using the simple name mapping solution, you p
 Because, how would you find version 3.2 of a module when looking for a 2.9 or higher?
 Any ideas?
 
-06:00
-
 Popular ideas included collecting information about installed modules in JSON files and as those turned out to be toe nail growing slow, putting the meta data into SQLite databases.
 However, these ideas can be easily shot down by introducing another requirement: distribution packages.
 
@@ -87,8 +79,6 @@ Indeed, distributions often will just be called after their main module.
 An important property of distributions is that they are immutable.
 Foo:auth<nine>:ver<0.3>:api<1> will always be the name for exactly the same code.
 
-08:00
-
 When requesting a module, you will usually either do it via this exact long name, or you say something along the lines of "give me a module that matches this filter".
 Such a filter is given by way of a CompUnit::DependencySpecification object which has fields for: short-name, auth-matcher, version-matcher and api-matcher.
 When looking through candidates, Perl 6 will smart match a module's long name against this DependencySpecification or rather the individual fields against the individual matchers.
@@ -102,16 +92,12 @@ However thanks to the Unicode issues mentioned, we cannot just use the module na
 This is where the infamous SHA-1 hashes enter the game.
 The directory names are the ASCII encoded SHA-1 hashes of the UTF-8 encoded module short-names.
 
-10:00
-
 In these directories we find one file per distribution that contains a module with a matching short name.
 These files again contain the ID of the dist and the other fields that make up the long name: auth, version and api.
 So by reading these files we have a usually short list of auth-version-api triplets which we can match against our DependencySpecification.
 We end up with the winning dist's ID, which we use to look up the meta data, stored in a JSON encoded file.
 This meta data contains the name of the file in the sources/ directory containing the requested module's code.
 This is what we can load.
-
-11:00
 
 Finding names for source files is again a bit tricky, as there's still the Unicode issue and in addition the same relative file names may be used by different installed distributions (think versions).
 So for now at least, we use SHA-1 hashes of the long-names.
@@ -121,8 +107,6 @@ Distributions may also contain arbitrary resource files.
 These could be images, language files or shared libraries that are compiled on installation.
 They can be accessed from within the module through the %?RESOURCES hash: %?RESOURCES<libraries/p5helper>
 As long as you stick to the standard layout conventions for distributions, this even works during development without installing anything.
-
-12:00
 
 So far, we've looked at loading modules from source files.
 However, just the same as Perl 5 and Python, Perl 6 supports precompiling modules into binaries.
@@ -143,24 +127,34 @@ To top it off, precompiled files work only with the exact perl6 binary, that was
 All of that would still be quite manageable if it weren't for an additional requirement: as a user you expect a new version of a module you just installed to be actually used, don't you?
 In other words: if you upgrade a dependency of a precompiled module, we have to detect this and precompile the module again with the new dependency.
 
-13:45
-
 So what does the current attempt at solving all these challenges look like?
 In Perl 5 and Python you deal with include paths, pointing to file system directories.
 In Perl 6 we call such directories "repositories" and each of these repositories is governed by an object that does the CompUnit::Repository role.
-Instead of an INC array, there's the $*REPO variable.
+Instead of an @INC array, there's the $*REPO variable.
 It contains a single repository object.
 This object has a "next-repo" attribute that may contain another repository.
 In other words: repositories are managed as a linked list.
 The important difference to the traditional array is, that when going through the list, each object has a say in whether to pass along a request to the next-repo or not.
 
-<Talk about need>
+Repositories must implement the "need" method.
+A "use" or "require" statement in Perl 6 code is basically translated to a call to $*REPO's "need" method.
+This method may in turn delegate the request to the next-repo.
 
 Rakudo comes with several classes that can be used for repositories.
 The most important ones are the CompUnit::Repository::FileSystem and CompUnit::Repository::Installation.
 The latter uses the layout I described earlier.
 The FileSystem repo is meant to be used during module development and actually works just like Perl 5 when looking for a module.
 It doesn't support versions or auths and simply maps the short-name to a file system path.
+
+A nice result from this architecture is that it's fairly easy to create special purpose repositories.
+My first example is CompUnit::Repository::DependencyTracker which you put into the repository chain and which simply records what's going on and tells you which modules were loaded.
+There are several Perl 5 modules that try to do this, but as far as I could find out, none of them can tell you exactly what was requested, i.e. the DependencySpecification but only what was actually loaded.
+
+The second example is CompUnit::Repository::Panda.
+Just load this module and it will transparently load any missing dependency.
+It doesn't do any harm if a module is already installed as it will attach itself to the end of the repository chain and will only be called if no other repository can satisfy the dependency.
+While in Perl 5 something similar is quite possible, the result is much less nice and does have significant runtime overhead:
+https://metacpan.org/source/KANE/Acme-Intraweb-1.01/lib/Acme/Intraweb.pm
 
 
 
@@ -174,8 +168,6 @@ Perl6: precompilation....
 
 auth feature: usefull for temporarily providing a patched version of a module
 
-Repository::Panda
-Repository::DependencyTracker
 
 
 
