@@ -130,9 +130,11 @@ As long as you stick to the standard layout conventions for distributions, this 
 
 A nice result from this architecture is that it's fairly easy to create special purpose repositories.
 My first example is CompUnit::Repository::DependencyTracker which you put into the repository chain and which simply records what's going on and tells you which modules were loaded.
+https://github.com/niner/CompUnit-Repository-DependencyTracker/blob/master/lib/CompUnit/Repository/DependencyTracker.pm6
 There are several Perl 5 modules that try to do this, but as far as I could find out, none of them can tell you exactly what was requested, i.e. the DependencySpecification but only what was actually loaded.
 
 The second example is CompUnit::Repository::Panda.
+https://github.com/niner/CompUnit-Repository-Panda/blob/master/lib/CompUnit/Repository/Panda.pm6
 Just load this module and it will transparently load any missing dependency.
 It doesn't do any harm if a module is already installed as it will attach itself to the end of the repository chain and will only be called if no other repository can satisfy the dependency.
 While in Perl 5 something similar is quite possible, the result is much less nice and does have significant runtime overhead:
