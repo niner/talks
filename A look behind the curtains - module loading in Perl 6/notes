@@ -17,7 +17,7 @@ os.path -> os/path.py
 Note that these are relative paths.
 Both Python and Perl 5 use a list of include paths, to complete these paths.
 In Perl 5 they are available in the global @INC array.
-Each of these include directories are checked for whether they contain a realtive path determined from the module name.
+Each of these include directories is checked for whether it contains a realtive path determined from the module name.
 If the shoe fits, the file is loaded.
 
 Of course that's a bit of a simplified version.
