@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>Konsole output</title>
+	<meta name="generator" content="LibreOffice 4.3.7.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="2016-03-08T14:44:49.684096384"/>
+</head>
+<body lang="en-US" dir="ltr" style="background: transparent">
+<p><font face="monospace"><font color="#000000"><span style="background: #ffffff">unit
+</span></font><font color="#b26818"><span style="background: #ffffff">class</span></font><font color="#000000"><span style="background: #ffffff">
+CompUnit::Repository::DependencyTracker </span></font><font color="#b218b2"><span style="background: #ffffff">does</span></font><font color="#000000"><span style="background: #ffffff">
+CompUnit::Repository</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br><br>CompUnit::RepositoryRegistry<font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">use-repository(</span></font><font color="#000000"><span style="background: #ffffff">$?CLASS.new</span></font><font color="#000000"><span style="background: #ffffff">)</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br><br><font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">%seen</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">:=</span></font><font color="#000000"><span style="background: #ffffff">
+SetHash</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">new</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br><br><font color="#b26818"><span style="background: #ffffff">method</span></font><font color="#000000"><span style="background: #ffffff">
+need(<br>    CompUnit::DependencySpecification </span></font><font color="#18b2b2"><span style="background: #ffffff">$spec</span></font><font color="#b26818"><span style="background: #ffffff">,<br>
+   </span></font><font color="#000000"><span style="background: #ffffff">CompUnit::PrecompilationRepository
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$precomp</span></font><font color="#b26818"><span style="background: #ffffff">?<br></span></font><font color="#000000"><span style="background: #ffffff">)
+{</span></font><br>&nbsp;&nbsp;&nbsp;<font color="#18b2b2"><span style="background: #ffffff">%seen</span></font><font color="#000000"><span style="background: #ffffff">{</span></font><font color="#18b2b2"><span style="background: #ffffff">$spec</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#18b218"><span style="background: #ffffff">Str</span></font><font color="#000000"><span style="background: #ffffff">}</span></font><font color="#b26818"><span style="background: #ffffff">++;</span></font><br>&nbsp;&nbsp;&nbsp;<font color="#18b2b2"><span style="background: #ffffff">self</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">next-repo</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">need(</span></font><font color="#18b2b2"><span style="background: #ffffff">$spec</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><font color="#000000"><span style="background: #ffffff">
+CompUnit::PrecompilationRepository::None)</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br>}<br><br><font color="#b26818"><span style="background: #ffffff">method</span></font><font color="#000000"><span style="background: #ffffff">
+id() { </span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">dependencytracker</span></font><font color="#b218b2"><span style="background: #ffffff">'
+</span></font>}<br><font color="#b26818"><span style="background: #ffffff">method</span></font><font color="#000000"><span style="background: #ffffff">
+loaded() { </span></font>[] }<br><font color="#b26818"><span style="background: #ffffff">method</span></font><font color="#000000"><span style="background: #ffffff">
+path-spec() { </span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">dependencytracker#</span></font><font color="#b218b2"><span style="background: #ffffff">'
+</span></font>}<br><br><font color="#b218b2"><span style="background: #ffffff">END
+</span></font>say <font color="#18b2b2"><span style="background: #ffffff">%seen</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font></font></p>
+</body>
+</html>
