@@ -4,11 +4,11 @@ my $schema = DBIC::Demo.connect('dbi:Pg:dbname=nine');
 $schema.resultset('Cd').delete;
 $schema.resultset('Artist').delete;
 
-my $nin = $schema.resultset('Artist').create({
+my $nin = $schema.resultset('Artist').create(${
     name => 'Nine Inch Nails',
 });
 
-$nin.create_related('cds', {
+$nin.create_related('cds', ${
     title => 'The Downward Spiral',
 });
 
