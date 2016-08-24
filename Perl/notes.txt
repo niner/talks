@@ -1,0 +1,61 @@
+Let me ask a question that you all should be able to answer.
+So please, each and every one of you, answer it.
+Who are we?
+Or let me put it this way: what community are we?
+
+We are the Perl community!
+What did I not hear?
+We are the Python community. Good - so I'm probably at the right conference.
+We are the Javascript community: I can't tell you how glad I am!
+
+What did I also not hear?
+That we are the Perl 5 community. Didn't hear anybody say that.
+It comes to little surprise that we are also not the Perl 6 community - though we have lot's of talks about that language on the schedule.
+
+No, we are the Perl community and I'm so grateful that I ended up being part of it.
+You people have enriched my life more than I can ever give back and I love you for it.
+
+I just wish more people would have the chance of getting to know you.
+But how can they?
+They don't know you. They don't know how great Perl is. They don't know that they want to join.
+
+So what can we do about this?
+Of course, we can tell them!
+We can make them want to join.
+
+Now if there only was a word for this.
+I know! I think it's called marketing!
+
+Now we all know that we have marketing resources to spare.
+We have lots of personell.
+We have Mark.
+And we have Wendy.
+And and...we have Mark!
+And they have a huge budget...with which they can buy some stickers about once a year.
+
+With so many resources it's best to split them between two languages. isn't it?
+Hell we can even have them compete with each other!
+Can we?
+Should we?
+
+A couple of years ago the Perl community was at the brink of tearing itself apart over the question whether Perl 5 or Perl 6 is _the_ Perl.
+Then a bunch of people sat together and figured out that we have two sister languages in the same family.
+This narrative really saved us and extinguished most of the fires.
+
+Now that the wounds have healed, and we realized that we are all on the same side, I can't help but wonder.
+How do we want to present ourselves to the outside world?
+
+Do we want to spend our plentiful resources on marketing two languages in friendly competition?
+Or...do we want to tell them about this awesome community...rich in technology from stable and proven to exciting and powerful?
+
+Is the most important bit they need to hear really that there are two completely different languages that have nothing at all to do with each other?
+Or would it be better to tell them that Perl has DBIx::Class and Mojolicious.
+And that Perl has meta classes and proper threading and umpteen other features that they want to try.
+
+I know as technical people we like being correct and precise.
+But marketing is not about teaching people.
+It's about making them want something.
+
+What do you think?
+How do you want to promote Perl?
+
