@@ -57,7 +57,7 @@ hook before_template_render => sub (%tokens) {
     %tokens<css_url>    = request.base ~ 'css/style.css';
     %tokens<login_url>  = uri_for('/login');
     %tokens<logout_url> = uri_for('/logout');
-};
+}
  
 get '/' => {
     my $db = connect_db();
@@ -69,7 +69,7 @@ get '/' => {
         add_entry_url => uri_for('/add'),
         entries       => $sth.fetchall_hashref('id'),
     )).item;
-};
+}
  
 post '/add' => {
     unless session('logged_in') {
@@ -84,7 +84,7 @@ post '/add' => {
  
     set_flash('New entry posted!');
     redirect '/';
-};
+}
  
 any $['get', 'post'], '/login', sub (*@a) {
     my $err;
@@ -109,13 +109,13 @@ any $['get', 'post'], '/login', sub (*@a) {
        err => $err,
    };
  
-};
+}
  
 get '/logout' => {
    app.destroy_session;
    set_flash('You are logged out.');
    redirect '/';
-};
+}
  
 init_db();
 
