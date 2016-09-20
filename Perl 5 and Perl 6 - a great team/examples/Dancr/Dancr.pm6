@@ -64,11 +64,11 @@ get '/' => {
     my $sql = 'select id, title, text from entries order by id desc';
     my $sth = $db.prepare($sql) or die $db.errstr;
     $sth.execute or die $sth.errstr;
-    template 'show_entries.tt', ${
+    template 'show_entries.tt', Map.new((
         msg           => get_flash(),
         add_entry_url => uri_for('/add'),
         entries       => $sth.fetchall_hashref('id'),
-    };
+    )).item;
 };
  
 post '/add' => {
