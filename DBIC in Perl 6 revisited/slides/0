@@ -1,0 +1,12 @@
+
+  my @albums = $schema->resultset('Album')->search({
+    -or => [
+      -and => [
+        artist => { 'like', '%Smashing Pumpkins%' },
+        title  => 'Siamese Dream',
+      ],
+      artist => 'Starchildren',
+    ],
+  });
+
+# vim: ft=perl
