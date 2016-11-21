@@ -1,0 +1,15 @@
+multi sub trait_mod:<is>(Routine $action, :$Chained!) {
+    note "{$action.name} is chained to {$Chained.name}";
+}
+
+class Base {
+    our method chain('foo', $foo) {
+    }
+}
+
+class Foo is Base {
+    multi method index('bar') is Chained(&Base::chain) {
+    }
+}
+
+# vim: ft=perl6

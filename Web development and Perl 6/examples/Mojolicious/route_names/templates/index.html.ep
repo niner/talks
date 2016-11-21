@@ -1,0 +1,2 @@
+<%= link_to Hello  => 'hello' %>.
+<%= link_to Reload => 'index' %>.
