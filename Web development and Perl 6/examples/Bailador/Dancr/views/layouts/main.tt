@@ -1,0 +1,24 @@
+% my %h = @_;
+<!doctype html>
+<html>
+<head>
+  <title>Dancr</title>
+  <link rel=stylesheet type=text/css href="<%= %h<css_url> %>">
+</head>
+<body>
+  <div class=page>
+  <h1>Dancr</h1>
+     <div class=metanav>
+% if not %h<session><logged_in> {
+       <a href="<%= %h<login_url> %>">log in</a>
+% } else {
+       <a href="<%= %h<logout_url> %>">log out</a>
+% }
+  </div>
+% if %h<msg> {
+    <div class=flash> [% %h<msg> %] </div>
+% }
+  <%= %h<content> %>
+</div>
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>Konsole output</title>
+	<meta name="generator" content="LibreOffice 5.0.6.3 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="2016-09-20T14:50:42.609702615"/>
+</head>
+<body lang="en-US" dir="ltr">
+<p><font face="monospace"><font color="#b218b2"><span style="background: #ffffff">use</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">v6</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">c</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<br/>
+unit
+<font color="#b26818"><span style="background: #ffffff">class</span></font><font color="#000000"><span style="background: #ffffff">
+Dancr</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<br/>
+<font color="#b218b2"><span style="background: #ffffff">use</span></font><font color="#000000"><span style="background: #ffffff">
+Dancer2</span></font><font color="#b26818"><span style="background: #ffffff">:</span></font><font color="#b21818"><span style="background: #ffffff">from</span></font><font color="#b218b2"><span style="background: #ffffff">&lt;</span></font><font color="#b21818"><span style="background: #ffffff">Perl5</span></font><font color="#b218b2"><span style="background: #ffffff">&gt;</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<font color="#b218b2"><span style="background: #ffffff">use</span></font><font color="#000000"><span style="background: #ffffff">
+DBI</span></font><font color="#b26818"><span style="background: #ffffff">:</span></font><font color="#b21818"><span style="background: #ffffff">from</span></font><font color="#b218b2"><span style="background: #ffffff">&lt;</span></font><font color="#b21818"><span style="background: #ffffff">Perl5</span></font><font color="#b218b2"><span style="background: #ffffff">&gt;</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<font color="#b218b2"><span style="background: #ffffff">use</span></font><font color="#000000"><span style="background: #ffffff">
+Template</span></font><font color="#b26818"><span style="background: #ffffff">:</span></font><font color="#b21818"><span style="background: #ffffff">from</span></font><font color="#b218b2"><span style="background: #ffffff">&lt;</span></font><font color="#b21818"><span style="background: #ffffff">Perl5</span></font><font color="#b218b2"><span style="background: #ffffff">&gt;</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<br/>
+<font color="#18b218"><span style="background: #ffffff">set</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">database</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
+    </span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$</span></font><font color="#b218b2"><span style="background: #ffffff">*</span></font><font color="#18b2b2"><span style="background: #ffffff">TMPDIR</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">child(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">dancr.db</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<font color="#18b218"><span style="background: #ffffff">set</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">session</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
+    &nbsp;</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">Simple</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<font color="#18b218"><span style="background: #ffffff">set</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">template</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
+    </span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">template_toolkit</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<font color="#18b218"><span style="background: #ffffff">set</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">logger</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
+    &nbsp;&nbsp;</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">console</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<font color="#18b218"><span style="background: #ffffff">set</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">log</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
+        &nbsp;</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">debug</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<font color="#18b218"><span style="background: #ffffff">set</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">show_errors</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
+&nbsp;</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b21818"><span style="background: #ffffff">1</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<font color="#18b218"><span style="background: #ffffff">set</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">startup_info</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b21818"><span style="background: #ffffff">1</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<font color="#18b218"><span style="background: #ffffff">set</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">warnings</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
+    </span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b21818"><span style="background: #ffffff">1</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<font color="#18b218"><span style="background: #ffffff">set</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">username</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
+    </span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">admin</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<font color="#18b218"><span style="background: #ffffff">set</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">password</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
+    </span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">password</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<font color="#18b218"><span style="background: #ffffff">set</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">layout</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
+    &nbsp;&nbsp;</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">main</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<br/>
+<font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$flash</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<br/>
+<font color="#b26818"><span style="background: #ffffff">method</span></font><font color="#000000"><span style="background: #ffffff">
+to-app() {</span></font><br/>
+    to_app<br/>
+}<br/>
+<br/>
+<font color="#b26818"><span style="background: #ffffff">method</span></font><font color="#000000"><span style="background: #ffffff">
+start() {</span></font><br/>
+    start()<font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+}<br/>
+<br/>
+<font color="#b26818"><span style="background: #ffffff">sub</span></font><font color="#000000"><span style="background: #ffffff">
+set_flash(</span></font><font color="#18b2b2"><span style="background: #ffffff">$message</span></font><font color="#000000"><span style="background: #ffffff">)
+{</span></font><br/>
+    <font color="#18b2b2"><span style="background: #ffffff">$flash</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$message</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+}<br/>
+<br/>
+<font color="#b26818"><span style="background: #ffffff">sub</span></font><font color="#000000"><span style="background: #ffffff">
+get_flash() {</span></font><br/>
+<br/>
+    <font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$msg</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$flash</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+
+   <font color="#18b2b2"><span style="background: #ffffff">$flash</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">&quot;&quot;</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<br/>
+
+   <font color="#b218b2"><span style="background: #ffffff">return</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$msg</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+}<br/>
+<br/>
+<font color="#b26818"><span style="background: #ffffff">sub</span></font><font color="#000000"><span style="background: #ffffff">
+connect_db() {</span></font><br/>
+    <font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$dbh</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
+DBI</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">connect(</span></font><font color="#b218b2"><span style="background: #ffffff">&quot;</span></font><font color="#b21818"><span style="background: #ffffff">dbi:SQLite:dbname=</span></font><font color="#000000"><span style="background: #ffffff">{setting(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">database</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)}</span></font><font color="#b218b2"><span style="background: #ffffff">&quot;</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b218"><span style="background: #ffffff">Any</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b218"><span style="background: #ffffff">Any</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><font color="#000000"><span style="background: #ffffff">
+${</span></font><font color="#b21818"><span style="background: #ffffff">sqlite_unicode</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b21818"><span style="background: #ffffff">1</span></font><font color="#000000"><span style="background: #b2b2b2">})
+</span></font><font color="#b26818"><span style="background: #b2b2b2">or</span></font><br/>
+
+       <font color="#b26818"><span style="background: #ffffff">die</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">%</span></font><font color="#b218b2"><span style="background: #ffffff">*</span></font><font color="#18b2b2"><span style="background: #ffffff">PERL5</span></font><font color="#b218b2"><span style="background: #ffffff">&lt;</span></font><font color="#b21818"><span style="background: #ffffff">$DBI::errstr</span></font><font color="#b218b2"><span style="background: #ffffff">&gt;</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<br/>
+
+   <font color="#b218b2"><span style="background: #ffffff">return</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$dbh</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+}<br/>
+<br/>
+<font color="#b26818"><span style="background: #ffffff">sub</span></font><font color="#000000"><span style="background: #ffffff">
+init_db() {</span></font><br/>
+    <font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$db</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
+connect_db()</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+
+   <font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$schema</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
+slurp </span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">schema.sql</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+
+   <font color="#18b2b2"><span style="background: #ffffff">$db</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">do(</span></font><font color="#18b2b2"><span style="background: #ffffff">$schema</span></font><font color="#000000"><span style="background: #ffffff">)
+</span></font><font color="#b26818"><span style="background: #ffffff">or</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">die</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$db</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">errstr</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+}<br/>
+<br/>
+hook
+<font color="#b21818"><span style="background: #ffffff">before_template_render</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">sub</span></font><font color="#000000"><span style="background: #ffffff">
+(</span></font><font color="#18b2b2"><span style="background: #ffffff">%tokens</span></font><font color="#000000"><span style="background: #ffffff">)
+{</span></font><br/>
+    <font color="#18b2b2"><span style="background: #ffffff">%tokens</span></font><font color="#b218b2"><span style="background: #ffffff">&lt;</span></font><font color="#b21818"><span style="background: #ffffff">css_url</span></font><font color="#b218b2"><span style="background: #ffffff">&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+   </span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
+request</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">base
+</span></font><font color="#b26818"><span style="background: #ffffff">~</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">css/style.css</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+
+   <font color="#18b2b2"><span style="background: #ffffff">%tokens</span></font><font color="#b218b2"><span style="background: #ffffff">&lt;</span></font><font color="#b21818"><span style="background: #ffffff">login_url</span></font><font color="#b218b2"><span style="background: #ffffff">&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+&nbsp;</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
+uri_for(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">/login</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+
+   <font color="#18b2b2"><span style="background: #ffffff">%tokens</span></font><font color="#b218b2"><span style="background: #ffffff">&lt;</span></font><font color="#b21818"><span style="background: #ffffff">logout_url</span></font><font color="#b218b2"><span style="background: #ffffff">&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
+uri_for(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">/logout</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+}<br/>
+<br/>
+get
+<font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">/</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+{</span></font><br/>
+    <font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$db</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
+connect_db()</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+
+   <font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$sql</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">select
+id, title, text from entries order by id desc</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+
+   <font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$sth</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$db</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">prepare(</span></font><font color="#18b2b2"><span style="background: #ffffff">$sql</span></font><font color="#000000"><span style="background: #ffffff">)
+</span></font><font color="#b26818"><span style="background: #ffffff">or</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">die</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$db</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">errstr</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+
+   <font color="#18b2b2"><span style="background: #ffffff">$sth</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">execute
+</span></font><font color="#b26818"><span style="background: #ffffff">or</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">die</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$sth</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">errstr</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+
+   template <font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">show_entries.tt</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><font color="#000000"><span style="background: #ffffff">
+Map</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">new((</span></font><br/>
+
+       <font color="#b21818"><span style="background: #ffffff">msg</span></font><font color="#000000"><span style="background: #ffffff">
+        &nbsp;&nbsp;</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+get_flash()</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><br/>
+
+       <font color="#b21818"><span style="background: #ffffff">add_entry_url</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+uri_for(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">/add</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><br/>
+
+       <font color="#b21818"><span style="background: #ffffff">entries</span></font><font color="#000000"><span style="background: #ffffff">
+    &nbsp;&nbsp;</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$sth</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">fetchall_hashref(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">id</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><br/>
+
+   ))<font color="#b26818"><span style="background: #ffffff">.item;</span></font><br/>
+}<br/>
+<br/>
+post
+<font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">/add</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+{</span></font><br/>
+    <font color="#b26818"><span style="background: #ffffff">unless</span></font><font color="#000000"><span style="background: #ffffff">
+session(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">logged_in</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)
+{</span></font><br/>
+        send_error(<font color="#b218b2"><span style="background: #ffffff">&quot;</span></font><font color="#b21818"><span style="background: #ffffff">Not
+logged in</span></font><font color="#b218b2"><span style="background: #ffffff">&quot;</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b21818"><span style="background: #ffffff">401</span></font><font color="#000000"><span style="background: #ffffff">)</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+
+   }<br/>
+<br/>
+    <font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$db</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
+connect_db()</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+
+   <font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$sql</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">insert
+into entries (title, text) values (?, ?)</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+
+   <font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$sth</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$db</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">prepare(</span></font><font color="#18b2b2"><span style="background: #ffffff">$sql</span></font><font color="#000000"><span style="background: #ffffff">)
+</span></font><font color="#b26818"><span style="background: #ffffff">or</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">die</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$db</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">errstr</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+
+   <font color="#18b2b2"><span style="background: #ffffff">$sth</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">execute(body_parameters</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">get(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">title</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><font color="#000000"><span style="background: #ffffff">
+body_parameters</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">get(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">text</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">))</span></font><br/>
+
+       <font color="#b26818"><span style="background: #ffffff">or</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">die</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$sth</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">errstr</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<br/>
+
+   set_flash(<font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">New
+entry posted!</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+
+   redirect <font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">/</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+}<br/>
+<br/>
+any
+$[<font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">get</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">post</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">]</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">/login</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">sub</span></font><font color="#000000"><span style="background: #ffffff">
+(</span></font><font color="#b26818"><span style="background: #ffffff">*</span></font><font color="#18b2b2"><span style="background: #ffffff">@a</span></font><font color="#000000"><span style="background: #ffffff">)
+{</span></font><br/>
+    <font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$err</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<br/>
+
+   <font color="#b26818"><span style="background: #ffffff">if</span></font><font color="#000000"><span style="background: #ffffff">
+( request</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">method
+</span></font><font color="#b26818"><span style="background: #ffffff">eq</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">&quot;</span></font><font color="#b21818"><span style="background: #ffffff">POST</span></font><font color="#b218b2"><span style="background: #ffffff">&quot;</span></font><font color="#000000"><span style="background: #ffffff">
+) {</span></font><br/>
+        <font color="#1818b2"><span style="background: #ffffff">#
+process form input</span></font><br/>
+        <font color="#b26818"><span style="background: #ffffff">if</span></font><font color="#000000"><span style="background: #ffffff">
+body_parameters</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">get(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">username</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)
+</span></font><font color="#b26818"><span style="background: #ffffff">ne</span></font><font color="#000000"><span style="background: #ffffff">
+setting(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">username</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)
+{</span></font><br/>
+            <font color="#18b2b2"><span style="background: #ffffff">$err</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">&quot;</span></font><font color="#b21818"><span style="background: #ffffff">Invalid
+username</span></font><font color="#b218b2"><span style="background: #ffffff">&quot;</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+
+       }<br/>
+        <font color="#b26818"><span style="background: #ffffff">elsif</span></font><font color="#000000"><span style="background: #ffffff">
+body_parameters</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">get(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">password</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)
+</span></font><font color="#b26818"><span style="background: #ffffff">ne</span></font><font color="#000000"><span style="background: #ffffff">
+setting(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">password</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)
+{</span></font><br/>
+            <font color="#18b2b2"><span style="background: #ffffff">$err</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b218b2"><span style="background: #ffffff">&quot;</span></font><font color="#b21818"><span style="background: #ffffff">Invalid
+password</span></font><font color="#b218b2"><span style="background: #ffffff">&quot;</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+
+       }<br/>
+        <font color="#b26818"><span style="background: #ffffff">else</span></font><font color="#000000"><span style="background: #ffffff">
+{</span></font><br/>
+            session <font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">logged_in</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+true</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+
+           set_flash(<font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">You
+are logged in.</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+
+           <font color="#b218b2"><span style="background: #ffffff">return</span></font><font color="#000000"><span style="background: #ffffff">
+redirect </span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">/</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+
+       }<br/>
+    }<br/>
+<br/>
+    <font color="#1818b2"><span style="background: #ffffff">#
+display login form</span></font><br/>
+    template <font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">login.tt</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><font color="#000000"><span style="background: #ffffff">
+${</span></font><br/>
+        <font color="#b21818"><span style="background: #ffffff">err</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#18b2b2"><span style="background: #ffffff">$err</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><br/>
+
+   }<font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+}<br/>
+<br/>
+get
+<font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">/logout</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
+</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
+{</span></font><br/>
+    app<font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">destroy_session</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+
+   set_flash(<font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">You
+are logged out.</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+
+   redirect <font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">/</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+}<font color="#000000"><span style="background: #ffffff"><br/>
+</span></font><br/>
+init_db()<font color="#b26818"><span style="background: #ffffff">;</span></font></font></p>
+</body>
+</html>

@@ -5,3 +5,53 @@ Web::App::Ballet: Jun 2015
 Web::App::MVC: Mar 2013
 Web::RF: Nov 2015 (3 day project)
 Web::Template: Apr 2016 (before that Jun 2014)
+HTTP::Server::Tiny failed a test, nobody noticed...
+"Crust is a set of tools for using the PSGI stack. It contains middleware components(TBI), and utilities for Web application frameworks."
+Note the "TBI"
+
+Bailador docs spread between POD and perl6maven.com. Covers only very minimalistic examples.
+doesn't have any uri_for capability
+doesn't have an any('get', 'post'), so you have to duplicate all subs accessible via different methods
+
+Intro:
+""
+
+Bailador performance:
+
+Concurrency Level:      1
+Time taken for tests:   24.063 seconds
+Complete requests:      100
+Failed requests:        0
+Total transferred:      59500 bytes
+HTML transferred:       45400 bytes
+Requests per second:    4.16 [#/sec] (mean)
+Time per request:       240.626 [ms] (mean)
+Time per request:       240.626 [ms] (mean, across all concurrent requests)
+Transfer rate:          2.41 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.0      0       0
+Processing:   218  241  24.9    238     447
+Waiting:      218  241  24.9    238     447
+Total:        218  241  24.9    238     447
+
+Dancer2 performance:
+
+Concurrency Level:      1
+Time taken for tests:   5.741 seconds
+Complete requests:      1000
+Failed requests:        0
+Total transferred:      712000 bytes
+HTML transferred:       533000 bytes
+Requests per second:    174.18 [#/sec] (mean)
+Time per request:       5.741 [ms] (mean)
+Time per request:       5.741 [ms] (mean, across all concurrent requests)
+Transfer rate:          121.11 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.0      0       0
+Processing:     5    6   1.8      5      20
+Waiting:        5    6   1.8      5      20
+Total:          5    6   1.8      5      20

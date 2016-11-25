@@ -1,0 +1,21 @@
+% my %h = @_;
+% if %h<session><logged_in> {
+  <form action="<%= %h<add_entry_url> %>" method=post class="add-entry">
+    <dl>
+      <dt>Title:
+      <dd><input type=text size=30 name=title>
+      <dt>Text:
+      <dd><textarea name=text rows=5 cols=40></textarea>
+      <dd><input type=submit value=Share>
+    </dl>
+  </form>
+% }
+<ul class="entries">
+% if %h<entries>.elems {
+  % for %h<entries>.keys.sort -> $id {
+    <li><h2><%= %h<entries>{$id}<title> %></h2><%= %h<entries>{$id}<text> %>
+  % }
+% } else {
+  <li><em>Unbelievable.  No entries here so far</em>
+% }
+</ul>
