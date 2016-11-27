@@ -14,7 +14,8 @@ doesn't have any uri_for capability
 doesn't have an any('get', 'post'), so you have to duplicate all subs accessible via different methods
 
 Intro:
-""
+http://blogs.perl.org/users/ken_youens-clark/2016/10/web-development-with-perl-5.html
+"Even though I am in the thralls of Perl 6, I still do all my web development in Perl 5 because the ecology of modules is so mature."
 
 Bailador performance:
 
