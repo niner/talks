@@ -1,0 +1,10 @@
+pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+* { font-size: 1em; }
+.Constant { color: #b21818; }
+.Comment { color: #8080ff; }
+.Type { color: #18b218; }
+.Special { color: #b218b2; }
+.Identifier { color: #18b2b2; }
+.Statement { color: #b26818; }
+.PreProc { color: #b218b2; }
