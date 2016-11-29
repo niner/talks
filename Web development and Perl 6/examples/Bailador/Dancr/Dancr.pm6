@@ -6,9 +6,6 @@ use Bailador;
 use DBIish;
 
 my %settings;
-sub set($name, $value) {
-    %settings{$name} = $value
-} 
 multi sub setting(Str $name) {
     %settings{$name}
 }
@@ -60,7 +57,7 @@ sub connect_db() {
 sub init_db() {
     my $db = connect_db();
     my $schema = slurp 'schema.sql';
-    $db.do($schema) or die $db.errstr;
+    $db.do($schema);
 }
  
 sub std_tokens () {
@@ -97,9 +94,8 @@ post '/add' => {
  
     my $db = connect_db();
     my $sql = 'insert into entries (title, text) values (?, ?)';
-    my $sth = $db.prepare($sql) or die $db.errstr;
-    $sth.execute(request.params<title>, request.params<text>)
-        or die $sth.errstr;
+    my $sth = $db.prepare($sql);
+    $sth.execute(request.params<title>, request.params<text>);
  
     set_flash('New entry posted!');
     redirect '/';
