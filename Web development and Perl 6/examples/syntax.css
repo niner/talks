@@ -1,10 +1,10 @@
-pre { white-space: pre-wrap; font-family: monospace; color: #000000; background-color: #ffffff; }
-body { font-family: monospace; color: #000000; background-color: #ffffff; }
-* { font-size: 1em; }
-.Constant { color: #b21818; }
-.Comment { color: #8080ff; }
-.Type { color: #18b218; }
-.Special { color: #b218b2; }
-.Identifier { color: #18b2b2; }
-.Statement { color: #b26818; }
-.PreProc { color: #b218b2; }
+pre { white-space: pre-wrap !important; font-family: monospace !important; color: #000000 !important; background-color: #ffffff !important; }
+body { font-family: monospace !important; color: #000000 !important; background-color: #ffffff !important; }
+* { font-size: 1em !important; }
+.Constant { color: #b21818 !important; }
+.Comment { color: #8080ff !important; }
+.Type { color: #18b218 !important; }
+.Special { color: #b218b2 !important; }
+.Identifier { color: #18b2b2 !important; }
+.Statement { color: #b26818 !important; }
+.PreProc { color: #b218b2 !important; }
