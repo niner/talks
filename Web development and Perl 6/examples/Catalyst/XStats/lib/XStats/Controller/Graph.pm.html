@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/talks/Web development and Perl 6/examples/Catalyst/XStats/lib/XStats/Controller/Graph.pm.html</title>
+<meta name="Generator" content="Vim/8.0">
+<meta name="plugin-version" content="vim7.4_v2">
+<meta name="syntax" content="perl">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
+<meta name="colorscheme" content="none">
+<link rel="stylesheet" type="text/css" href="../../../../../syntax.css">
+<body>
+<pre id='vimCodeElement'>
+<span class="Statement">package</span><span class="Type"> XStats::Controller::Graph</span>;
+<span class="Statement">use </span>Moose;
+<span class="Statement">use </span>namespace::autoclean;
+
+<span class="PreProc">BEGIN </span>{ extends <span class="Constant">'</span><span class="Constant">Catalyst::Controller</span><span class="Constant">'</span>; }
+
+__PACKAGE__<span class="Identifier">-&gt;meta-&gt;make_immutable</span>;
+
+<span class="Statement">use </span><span class="Constant">v</span><span class="Constant">6</span>::inline;
+
+<span class="Statement">use </span>SVG::Plot;
+<span class="Statement">use </span>SVG;
+
+<span class="Statement">use </span>CatalystX::Perl6::Component::Perl5Attributes;
+
+method show(<span class="Identifier">$c</span>) is Path is Args(<span class="Constant">0</span>) {
+    <span class="Identifier">$c</span>.response.content_type(<span class="Constant">'</span><span class="Constant">image/svg+xml</span><span class="Constant">'</span>);
+    <span class="Statement">my</span> <span class="Identifier">$results</span> = <span class="Identifier">$c</span>.model(<span class="Constant">'</span><span class="Constant">Awstats</span><span class="Constant">'</span>).parse(<span class="Identifier">$c</span>).days;
+    <span class="Statement">my</span> <span class="Identifier">$days</span> = <span class="Identifier">$results</span>.hash<span class="Identifier">&lt;line_day&gt;</span>;
+    <span class="Statement">my</span> <span class="Identifier">@labels</span> = <span class="Identifier">$days</span>.<span class="Statement">map</span>({~<span class="Identifier">$_</span>.hash<span class="Identifier">&lt;date&gt;&lt;day&gt;</span>});
+    <span class="Statement">my</span> <span class="Identifier">@values</span> = <span class="Identifier">$days</span>.<span class="Statement">map</span>({+<span class="Identifier">$_</span>.hash<span class="Identifier">&lt;visits&gt;</span>});
+    <span class="Statement">my</span> <span class="Identifier">$svg</span> = SVG::Plot.new(
+            :width(<span class="Constant">600</span>),
+            :height(<span class="Constant">550</span>),
+            :plot-height(<span class="Constant">400</span>),
+            :fill-width(<span class="Constant">2</span>),
+            :title(<span class="Constant">'</span><span class="Constant">Visitors per day</span><span class="Constant">'</span>),
+            :<span class="Statement">values</span>([<span class="Identifier">$@</span><span class="Statement">values</span>]),
+            :labels(<span class="Identifier">@labels</span>),
+            :colors<span class="Identifier">&lt;gray&gt;</span>
+        ).plot(:lines);
+
+    <span class="Identifier">$c</span>.res.body(SVG.serialize(<span class="Constant">svg</span> =&gt; <span class="Identifier">$svg</span>));
+}
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/talks/Web development and Perl 6/examples/Catalyst/XStats/lib/XStats/Controller/Root.pm.html</title>
+<meta name="Generator" content="Vim/8.0">
+<meta name="plugin-version" content="vim7.4_v2">
+<meta name="syntax" content="perl">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
+<meta name="colorscheme" content="none">
+<link rel="stylesheet" type="text/css" href="../../../../../syntax.css">
+</head>
+<body>
+<pre id='vimCodeElement'>
+<span class="Statement">package</span><span class="Type"> XStats::Controller::Root</span>;
+<span class="Statement">use </span>Moose;
+<span class="Statement">use </span>namespace::autoclean;
+
+<span class="PreProc">BEGIN </span>{ extends <span class="Constant">'</span><span class="Constant">Catalyst::Controller</span><span class="Constant">'</span>; }
+
+<span class="Comment">#</span>
+<span class="Comment"># Sets the actions in this controller to be registered with no prefix</span>
+<span class="Comment"># so they function identically to actions created in MyApp.pm</span>
+<span class="Comment">#</span>
+__PACKAGE__<span class="Identifier">-&gt;config</span>(<span class="Constant">namespace</span> =&gt; <span class="Constant">''</span>);
+
+__PACKAGE__<span class="Identifier">-&gt;meta-&gt;make_immutable</span>;
+
+<span class="Statement">use </span><span class="Constant">v</span><span class="Constant">6</span>::inline;
+
+<span class="Statement">use </span>CatalystX::Perl6::Component::Perl5Attributes;
+
+method <span class="Statement">index</span>(<span class="Identifier">$c</span>) is Path is Args(<span class="Constant">0</span>) {
+    <span class="Identifier">$c</span>.stash({
+        <span class="Constant">template</span>  =&gt; <span class="Constant">'</span><span class="Constant">index.zpt</span><span class="Constant">'</span>,
+        <span class="Constant">uri_graph</span> =&gt; <span class="Identifier">$c</span>.uri_for(<span class="Constant">'</span><span class="Constant">graph</span><span class="Constant">'</span>),
+    });
+}
+
+method <span class="Statement">default</span>(<span class="Identifier">$c</span>) is Path is Args {
+    <span class="Identifier">$c</span>.response.body( <span class="Constant">'</span><span class="Constant">Page not found</span><span class="Constant">'</span> );
+    <span class="Identifier">$c</span>.response.status(<span class="Constant">404</span>);
+}
+
+method end(<span class="Identifier">$c</span>) is ActionClass[<span class="Constant">&quot;</span><span class="Constant">RenderView</span><span class="Constant">&quot;</span>] {
+}
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->

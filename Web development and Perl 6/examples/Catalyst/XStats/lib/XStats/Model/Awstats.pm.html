@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/talks/Web development and Perl 6/examples/Catalyst/XStats/lib/XStats/Model/Awstats.pm.html</title>
+<meta name="Generator" content="Vim/8.0">
+<meta name="plugin-version" content="vim7.4_v2">
+<meta name="syntax" content="perl">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
+<meta name="colorscheme" content="none">
+<link rel="stylesheet" type="text/css" href="../../../../../syntax.css">
+<pre id='vimCodeElement'>
+<span class="Statement">package</span><span class="Type"> XStats::Model::Awstats</span>;
+<span class="Statement">use </span>Moose;
+<span class="Statement">use </span>namespace::autoclean;
+
+extends <span class="Constant">'</span><span class="Constant">Catalyst::Model</span><span class="Constant">'</span>;
+
+__PACKAGE__<span class="Identifier">-&gt;meta-&gt;make_immutable</span>;
+
+<span class="Statement">use </span><span class="Constant">v</span><span class="Constant">6</span>::inline;
+
+grammar Awstats {
+    token TOP {
+        <span class="Identifier">&lt;header&gt;</span>
+        <span class="Identifier">&lt;body&gt;</span>
+    }
+    token header {
+        ^AWSTATS .*? <span class="Identifier">$$</span> \n?
+    }
+    token body {
+        [
+            &lt;.comment&gt;
+            | &lt;.empty&gt;
+            | <span class="Identifier">&lt;block&gt;</span>
+        ]+
+    }
+    token comment {
+            [
+            ^^
+            <span class="Constant">'</span><span class="Constant">#</span><span class="Constant">'</span>
+            \N*
+            <span class="Identifier">$$</span>
+            \n?
+            ]+
+    }
+    token empty {
+        ^^ <span class="Identifier">$$</span> \n?
+    }
+    token block {
+        <span class="Identifier">&lt;block_day&gt;</span>
+        | &lt;.generic_block&gt;
+    }
+    token block_day {
+        BEGIN_DAY <span class="Constant">'</span><span class="Constant"> </span><span class="Constant">'</span> \d+ \n
+        <span class="Identifier">&lt;line_day&gt;</span>*?
+        END_DAY \n?
+    }
+    token line_day {
+        <span class="Identifier">&lt;date&gt;</span> <span class="Constant">'</span><span class="Constant"> </span><span class="Constant">'</span> \d+ <span class="Constant">'</span><span class="Constant"> </span><span class="Constant">'</span> \d+ <span class="Constant">'</span><span class="Constant"> </span><span class="Constant">'</span> \d+ <span class="Constant">'</span><span class="Constant"> </span><span class="Constant">'</span> <span class="Identifier">&lt;visits&gt;</span> \n
+    }
+    token date {
+        <span class="Identifier">&lt;year&gt;</span> <span class="Identifier">&lt;month&gt;</span> <span class="Identifier">&lt;day&gt;</span>
+    }
+    token year {
+        \d**<span class="Constant">4</span>
+    }
+    token month {
+        \d\d
+    }
+    token day {
+        \d\d
+    }
+    token visits {
+        \d+
+    }
+    token generic_block {
+        BEGIN_ &lt;!before DAY&gt;(<span class="Identifier">&lt;name&gt;</span>) <span class="Constant">'</span><span class="Constant"> </span><span class="Constant">'</span> \d+ \n
+        <span class="Identifier">&lt;line&gt;</span>*?
+        END_<span class="Identifier">$0</span> \n?
+    }
+    token name {
+        \w+
+    }
+    token line {
+        ^^ (\N*) <span class="Identifier">$$</span> \n?
+    }
+}
+
+class AwstatsActions {
+    has <span class="Identifier">$.</span>days is rw;
+    method block_day(<span class="Identifier">$match</span>) {
+        <span class="Identifier">$.</span>days = <span class="Identifier">$match</span>;
+    }
+}
+
+method parse(<span class="Identifier">$c</span>) {
+    <span class="Statement">my</span> <span class="Identifier">$actions</span> = AwstatsActions.new;
+    Awstats.parsefile(<span class="Constant">'</span><span class="Constant">awstats.txt</span><span class="Constant">'</span>, :actions(<span class="Identifier">$actions</span>));
+    <span class="Statement">return</span> <span class="Identifier">$actions</span>;
+}
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/talks/Web development and Perl 6/examples/Catalyst/XStats/lib/CatalystX/Perl6/Component/Perl5Attributes.pm6.html</title>
+<meta name="Generator" content="Vim/8.0">
+<meta name="plugin-version" content="vim7.4_v2">
+<meta name="syntax" content="perl6">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
+<meta name="colorscheme" content="none">
+<link rel="stylesheet" type="text/css" href="../../../../../../syntax.css">
+</head>
+<body>
+<pre id='vimCodeElement'>
+<span class="PreProc">use</span> Inline::Perl5<span class="Statement">;</span>
+
+<span class="Statement">multi</span> trait_mod<span class="Statement">:</span><span class="Special">&lt;</span><span class="Constant">is</span><span class="Special">&gt;</span>(<span class="Type">Routine</span> <span class="Identifier">$</span><span class="Identifier">declarand</span><span class="Statement">,</span> <span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">Path</span><span class="Statement">!</span>) <span class="PreProc">is</span> <span class="Special">export</span> {
+    <span class="Statement">unless</span> <span class="Identifier">$</span><span class="Identifier">declarand</span><span class="Statement">.</span>does(Inline::Perl5::Perl5Attributes) {
+        <span class="Identifier">$</span><span class="Identifier">declarand</span> <span class="PreProc">does</span> Inline::Perl5::Perl5Attributes<span class="Statement">;</span>
+    }
+    <span class="Identifier">$</span><span class="Identifier">declarand</span><span class="Statement">.</span>attributes<span class="Statement">.</span>push(<span class="Special">'</span><span class="Constant">Path</span><span class="Special">'</span> <span class="Statement">~</span> (<span class="Identifier">$</span><span class="Identifier">Path</span><span class="Statement">.</span>isa(<span class="Type">Bool</span>) <span class="Statement">??</span> <span class="Special">''</span> <span class="Statement">!!</span> <span class="Special">&quot;</span><span class="Constant">('</span><span class="Identifier">$</span><span class="Identifier">Path</span><span class="Constant">')</span><span class="Special">&quot;</span>))<span class="Statement">;</span>
+}
+
+<span class="Statement">multi</span> trait_mod<span class="Statement">:</span><span class="Special">&lt;</span><span class="Constant">is</span><span class="Special">&gt;</span>(<span class="Type">Routine</span> <span class="Identifier">$</span><span class="Identifier">declarand</span><span class="Statement">,</span> <span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">Args</span><span class="Statement">!</span>) <span class="PreProc">is</span> <span class="Special">export</span> {
+    <span class="Statement">unless</span> <span class="Identifier">$</span><span class="Identifier">declarand</span><span class="Statement">.</span>does(Inline::Perl5::Perl5Attributes) {
+        <span class="Identifier">$</span><span class="Identifier">declarand</span> <span class="PreProc">does</span> Inline::Perl5::Perl5Attributes<span class="Statement">;</span>
+    }
+    <span class="Identifier">$</span><span class="Identifier">declarand</span><span class="Statement">.</span>attributes<span class="Statement">.</span>push(<span class="Special">'</span><span class="Constant">Args</span><span class="Special">'</span> <span class="Statement">~</span> (
+        <span class="Identifier">$</span><span class="Identifier">Args</span><span class="Statement">.</span>isa(<span class="Type">Bool</span>)
+            <span class="Statement">??</span> <span class="Special">''</span>
+            <span class="Statement">!!</span> <span class="Identifier">$</span><span class="Identifier">Args</span><span class="Statement">.</span>does(<span class="Type">Numeric</span>)
+                <span class="Statement">??</span> <span class="Special">&quot;</span><span class="Constant">(</span><span class="Identifier">$</span><span class="Identifier">Args</span><span class="Constant">)</span><span class="Special">&quot;</span>
+                <span class="Statement">!!</span> <span class="Special">&quot;</span><span class="Constant">('</span><span class="Identifier">$</span><span class="Identifier">Args</span><span class="Constant">')</span><span class="Special">&quot;</span>
+        )
+    )<span class="Statement">;</span>
+}
+
+<span class="Statement">multi</span> trait_mod<span class="Statement">:</span><span class="Special">&lt;</span><span class="Constant">is</span><span class="Special">&gt;</span>(<span class="Type">Routine</span> <span class="Identifier">$</span><span class="Identifier">declarand</span><span class="Statement">,</span> <span class="Statement">:</span><span class="Identifier">$</span><span class="Identifier">ActionClass</span><span class="Statement">!</span>) <span class="PreProc">is</span> <span class="Special">export</span> {
+    <span class="Statement">unless</span> <span class="Identifier">$</span><span class="Identifier">declarand</span><span class="Statement">.</span>does(Inline::Perl5::Perl5Attributes) {
+        <span class="Identifier">$</span><span class="Identifier">declarand</span> <span class="PreProc">does</span> Inline::Perl5::Perl5Attributes<span class="Statement">;</span>
+    }
+    <span class="Identifier">$</span><span class="Identifier">declarand</span><span class="Statement">.</span>attributes<span class="Statement">.</span>push(<span class="Special">&quot;</span><span class="Constant">ActionClass('</span><span class="Identifier">$</span><span class="Identifier">ActionClass</span><span class="Constant">')</span><span class="Special">&quot;</span>)<span class="Statement">;</span>
+}
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->
