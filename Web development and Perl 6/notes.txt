@@ -9,6 +9,11 @@ HTTP::Server::Tiny failed a test, nobody noticed...
 "Crust is a set of tools for using the PSGI stack. It contains middleware components(TBI), and utilities for Web application frameworks."
 Note the "TBI"
 
+Web::App::Ballet:
++   A Dancer-like interface to Web::App::Dispatch. NOTE: This project will
++   be merged with [Bailador](https://github.com/tadzik/Bailador) in the near future.
+This was written in March 2013
+
 Bailador docs spread between POD and perl6maven.com. Covers only very minimalistic examples.
 doesn't have any uri_for capability
 doesn't have an any('get', 'post'), so you have to duplicate all subs accessible via different methods
@@ -16,6 +21,13 @@ doesn't have an any('get', 'post'), so you have to duplicate all subs accessible
 Intro:
 http://blogs.perl.org/users/ken_youens-clark/2016/10/web-development-with-perl-5.html
 "Even though I am in the thralls of Perl 6, I still do all my web development in Perl 5 because the ecology of modules is so mature."
+
+http://www.arewewebyet.org
+"Can I replace my Rails/Django/Flask already?
+
+Well, probably not yet. While the basics are there, many of the handy utility libs that make working with many popular frameworks so quick and easy are still missing. If your service primarily provides an API to be consumed by other computers, requires little external services and you are happy with writing most SQL yourself, then Yes, You Can! Otherwise, we would not recommend it just yet."
+
+HTTP2?
 
 Bailador performance:
 
@@ -56,3 +68,10 @@ Connect:        0    0   0.0      0       0
 Processing:     5    6   1.8      5      20
 Waiting:        5    6   1.8      5      20
 Total:          5    6   1.8      5      20
+
+
+Conclusion:
+The only thing keeping you from doing web development with Perl 6 is yourself.
+You have to decide whether you want to be on the forefront of development and seizing the opportunity to carve out a name for yourself.
+Or whether you want to get things done with proven technology and familiar tools.
+Perl 6 will be with you in any case.
