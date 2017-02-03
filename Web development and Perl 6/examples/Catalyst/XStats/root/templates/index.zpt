@@ -9,6 +9,6 @@
         <title metal:define-slot="title">XStats</title>
     </head>
     <body>
-        <img tal:attributes="src uri_graph" alt=""/>
+        <img tal:attributes="src uri_graph" alt="" width="600" height="500"/>
     </body>
 </html>
