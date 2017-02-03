@@ -1,0 +1,3 @@
+use Dancr;
+my $app = Dancr.to-app();
+# vim: ft=perl6

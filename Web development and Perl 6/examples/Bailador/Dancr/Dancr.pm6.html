@@ -1,340 +1,164 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-	<title>Konsole output</title>
-	<meta name="generator" content="LibreOffice 5.0.6.3 (Linux)"/>
-	<meta name="created" content="00:00:00"/>
-	<meta name="changed" content="2016-09-20T14:50:42.609702615"/>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/talks/Web development and Perl 6/examples/Bailador/Dancr/Dancr.pm6.html</title>
+<meta name="Generator" content="Vim/8.0">
+<meta name="plugin-version" content="vim7.4_v2">
+<meta name="syntax" content="perl6">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
+<meta name="colorscheme" content="none">
+<link rel="stylesheet" type="text/css" href="../../syntax.css">
+</script>
 </head>
-<body lang="en-US" dir="ltr">
-<p><font face="monospace"><font color="#b218b2"><span style="background: #ffffff">use</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">v6</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">c</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-<br/>
-unit
-<font color="#b26818"><span style="background: #ffffff">class</span></font><font color="#000000"><span style="background: #ffffff">
-Dancr</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-<br/>
-<font color="#b218b2"><span style="background: #ffffff">use</span></font><font color="#000000"><span style="background: #ffffff">
-Dancer2</span></font><font color="#b26818"><span style="background: #ffffff">:</span></font><font color="#b21818"><span style="background: #ffffff">from</span></font><font color="#b218b2"><span style="background: #ffffff">&lt;</span></font><font color="#b21818"><span style="background: #ffffff">Perl5</span></font><font color="#b218b2"><span style="background: #ffffff">&gt;</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-<font color="#b218b2"><span style="background: #ffffff">use</span></font><font color="#000000"><span style="background: #ffffff">
-DBI</span></font><font color="#b26818"><span style="background: #ffffff">:</span></font><font color="#b21818"><span style="background: #ffffff">from</span></font><font color="#b218b2"><span style="background: #ffffff">&lt;</span></font><font color="#b21818"><span style="background: #ffffff">Perl5</span></font><font color="#b218b2"><span style="background: #ffffff">&gt;</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-<font color="#b218b2"><span style="background: #ffffff">use</span></font><font color="#000000"><span style="background: #ffffff">
-Template</span></font><font color="#b26818"><span style="background: #ffffff">:</span></font><font color="#b21818"><span style="background: #ffffff">from</span></font><font color="#b218b2"><span style="background: #ffffff">&lt;</span></font><font color="#b21818"><span style="background: #ffffff">Perl5</span></font><font color="#b218b2"><span style="background: #ffffff">&gt;</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-<br/>
-<font color="#18b218"><span style="background: #ffffff">set</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">database</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
-    </span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$</span></font><font color="#b218b2"><span style="background: #ffffff">*</span></font><font color="#18b2b2"><span style="background: #ffffff">TMPDIR</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">child(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">dancr.db</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-<font color="#18b218"><span style="background: #ffffff">set</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">session</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
-    &nbsp;</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">Simple</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-<font color="#18b218"><span style="background: #ffffff">set</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">template</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
-    </span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">template_toolkit</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-<font color="#18b218"><span style="background: #ffffff">set</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">logger</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
-    &nbsp;&nbsp;</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">console</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-<font color="#18b218"><span style="background: #ffffff">set</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">log</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
-        &nbsp;</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">debug</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-<font color="#18b218"><span style="background: #ffffff">set</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">show_errors</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
-&nbsp;</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b21818"><span style="background: #ffffff">1</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-<font color="#18b218"><span style="background: #ffffff">set</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">startup_info</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b21818"><span style="background: #ffffff">1</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-<font color="#18b218"><span style="background: #ffffff">set</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">warnings</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
-    </span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b21818"><span style="background: #ffffff">1</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-<font color="#18b218"><span style="background: #ffffff">set</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">username</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
-    </span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">admin</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-<font color="#18b218"><span style="background: #ffffff">set</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">password</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
-    </span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">password</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-<font color="#18b218"><span style="background: #ffffff">set</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">layout</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
-    &nbsp;&nbsp;</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">main</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-<br/>
-<font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$flash</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-<br/>
-<font color="#b26818"><span style="background: #ffffff">method</span></font><font color="#000000"><span style="background: #ffffff">
-to-app() {</span></font><br/>
-    to_app<br/>
-}<br/>
-<br/>
-<font color="#b26818"><span style="background: #ffffff">method</span></font><font color="#000000"><span style="background: #ffffff">
-start() {</span></font><br/>
-    start()<font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-}<br/>
-<br/>
-<font color="#b26818"><span style="background: #ffffff">sub</span></font><font color="#000000"><span style="background: #ffffff">
-set_flash(</span></font><font color="#18b2b2"><span style="background: #ffffff">$message</span></font><font color="#000000"><span style="background: #ffffff">)
-{</span></font><br/>
-    <font color="#18b2b2"><span style="background: #ffffff">$flash</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$message</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-}<br/>
-<br/>
-<font color="#b26818"><span style="background: #ffffff">sub</span></font><font color="#000000"><span style="background: #ffffff">
-get_flash() {</span></font><br/>
-<br/>
-    <font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$msg</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$flash</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<body>
+<pre id='vimCodeElement'>
+<span class="PreProc">use</span> <span class="Special">v6</span><span class="Statement">.</span>c<span class="Statement">;</span>
 
-   <font color="#18b2b2"><span style="background: #ffffff">$flash</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">&quot;&quot;</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-<br/>
+<span class="Statement">unit</span> <span class="Statement">class</span> Dancr<span class="Statement">;</span>
 
-   <font color="#b218b2"><span style="background: #ffffff">return</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$msg</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-}<br/>
-<br/>
-<font color="#b26818"><span style="background: #ffffff">sub</span></font><font color="#000000"><span style="background: #ffffff">
-connect_db() {</span></font><br/>
-    <font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$dbh</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
-DBI</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">connect(</span></font><font color="#b218b2"><span style="background: #ffffff">&quot;</span></font><font color="#b21818"><span style="background: #ffffff">dbi:SQLite:dbname=</span></font><font color="#000000"><span style="background: #ffffff">{setting(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">database</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)}</span></font><font color="#b218b2"><span style="background: #ffffff">&quot;</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b218"><span style="background: #ffffff">Any</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b218"><span style="background: #ffffff">Any</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><font color="#000000"><span style="background: #ffffff">
-${</span></font><font color="#b21818"><span style="background: #ffffff">sqlite_unicode</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b21818"><span style="background: #ffffff">1</span></font><font color="#000000"><span style="background: #b2b2b2">})
-</span></font><font color="#b26818"><span style="background: #b2b2b2">or</span></font><br/>
+<span class="PreProc">use</span> Bailador<span class="Statement">;</span>
+<span class="PreProc">use</span> DBIish<span class="Statement">;</span>
 
-       <font color="#b26818"><span style="background: #ffffff">die</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">%</span></font><font color="#b218b2"><span style="background: #ffffff">*</span></font><font color="#18b2b2"><span style="background: #ffffff">PERL5</span></font><font color="#b218b2"><span style="background: #ffffff">&lt;</span></font><font color="#b21818"><span style="background: #ffffff">$DBI::errstr</span></font><font color="#b218b2"><span style="background: #ffffff">&gt;</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-<br/>
+<span class="Special">my</span> <span class="Identifier">%</span><span class="Identifier">settings</span><span class="Statement">;</span>
+<span class="Statement">multi</span> <span class="Statement">sub</span> setting(<span class="Type">Str</span> <span class="Identifier">$</span><span class="Identifier">name</span>) {
+    <span class="Identifier">%</span><span class="Identifier">settings</span>{<span class="Identifier">$</span><span class="Identifier">name</span>}
+}
+<span class="Statement">multi</span> <span class="Statement">sub</span> setting(<span class="Type">Pair</span> <span class="Identifier">$</span><span class="Identifier">pair</span>) {
+    <span class="Identifier">%</span><span class="Identifier">settings</span>{<span class="Identifier">$</span><span class="Identifier">pair</span><span class="Statement">.</span>key} <span class="Statement">=</span> <span class="Identifier">$</span><span class="Identifier">pair</span><span class="Statement">.</span>value
+}
 
-   <font color="#b218b2"><span style="background: #ffffff">return</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$dbh</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-}<br/>
-<br/>
-<font color="#b26818"><span style="background: #ffffff">sub</span></font><font color="#000000"><span style="background: #ffffff">
-init_db() {</span></font><br/>
-    <font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$db</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
-connect_db()</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+setting <span class="Special">'</span><span class="Constant">database</span><span class="Special">'</span>     <span class="Statement">=&gt;</span> <span class="Identifier">$</span><span class="Special">*</span><span class="Identifier">TMPDIR</span><span class="Statement">.</span>child(<span class="Special">'</span><span class="Constant">dancr.db</span><span class="Special">'</span>)<span class="Statement">;</span>
+setting <span class="Special">'</span><span class="Constant">session</span><span class="Special">'</span>      <span class="Statement">=&gt;</span> <span class="Special">'</span><span class="Constant">Simple</span><span class="Special">'</span><span class="Statement">;</span>
+setting <span class="Special">'</span><span class="Constant">template</span><span class="Special">'</span>     <span class="Statement">=&gt;</span> <span class="Special">'</span><span class="Constant">template_toolkit</span><span class="Special">'</span><span class="Statement">;</span>
+setting <span class="Special">'</span><span class="Constant">logger</span><span class="Special">'</span>       <span class="Statement">=&gt;</span> <span class="Special">'</span><span class="Constant">console</span><span class="Special">'</span><span class="Statement">;</span>
+setting <span class="Special">'</span><span class="Constant">log</span><span class="Special">'</span>          <span class="Statement">=&gt;</span> <span class="Special">'</span><span class="Constant">debug</span><span class="Special">'</span><span class="Statement">;</span>
+setting <span class="Special">'</span><span class="Constant">show_errors</span><span class="Special">'</span>  <span class="Statement">=&gt;</span> <span class="Constant">1</span><span class="Statement">;</span>
+setting <span class="Special">'</span><span class="Constant">startup_info</span><span class="Special">'</span> <span class="Statement">=&gt;</span> <span class="Constant">1</span><span class="Statement">;</span>
+setting <span class="Special">'</span><span class="Constant">warnings</span><span class="Special">'</span>     <span class="Statement">=&gt;</span> <span class="Constant">1</span><span class="Statement">;</span>
+<span class="Comment"># webscale authentication method</span>
+setting <span class="Special">'</span><span class="Constant">username</span><span class="Special">'</span>     <span class="Statement">=&gt;</span> <span class="Special">'</span><span class="Constant">admin</span><span class="Special">'</span><span class="Statement">;</span>
+setting <span class="Special">'</span><span class="Constant">password</span><span class="Special">'</span>     <span class="Statement">=&gt;</span> <span class="Special">'</span><span class="Constant">password</span><span class="Special">'</span><span class="Statement">;</span>
+setting <span class="Special">'</span><span class="Constant">layout</span><span class="Special">'</span>       <span class="Statement">=&gt;</span> <span class="Special">'</span><span class="Constant">main</span><span class="Special">'</span><span class="Statement">;</span>
 
-   <font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$schema</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
-slurp </span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">schema.sql</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">flash</span><span class="Statement">;</span>
 
-   <font color="#18b2b2"><span style="background: #ffffff">$db</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">do(</span></font><font color="#18b2b2"><span style="background: #ffffff">$schema</span></font><font color="#000000"><span style="background: #ffffff">)
-</span></font><font color="#b26818"><span style="background: #ffffff">or</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">die</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$db</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">errstr</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-}<br/>
-<br/>
-hook
-<font color="#b21818"><span style="background: #ffffff">before_template_render</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">sub</span></font><font color="#000000"><span style="background: #ffffff">
-(</span></font><font color="#18b2b2"><span style="background: #ffffff">%tokens</span></font><font color="#000000"><span style="background: #ffffff">)
-{</span></font><br/>
-    <font color="#18b2b2"><span style="background: #ffffff">%tokens</span></font><font color="#b218b2"><span style="background: #ffffff">&lt;</span></font><font color="#b21818"><span style="background: #ffffff">css_url</span></font><font color="#b218b2"><span style="background: #ffffff">&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-   </span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
-request</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">base
-</span></font><font color="#b26818"><span style="background: #ffffff">~</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">css/style.css</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<span class="Statement">method</span> to-app() {
+    app<span class="Statement">.</span>get-psgi-app
+}
 
-   <font color="#18b2b2"><span style="background: #ffffff">%tokens</span></font><font color="#b218b2"><span style="background: #ffffff">&lt;</span></font><font color="#b21818"><span style="background: #ffffff">login_url</span></font><font color="#b218b2"><span style="background: #ffffff">&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-&nbsp;</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
-uri_for(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">/login</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<span class="Statement">method</span> start() {
+    baile()<span class="Statement">;</span>
+}
 
-   <font color="#18b2b2"><span style="background: #ffffff">%tokens</span></font><font color="#b218b2"><span style="background: #ffffff">&lt;</span></font><font color="#b21818"><span style="background: #ffffff">logout_url</span></font><font color="#b218b2"><span style="background: #ffffff">&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
-uri_for(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">/logout</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-}<br/>
-<br/>
-get
-<font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">/</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-{</span></font><br/>
-    <font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$db</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
-connect_db()</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<span class="Statement">sub</span> set_flash(<span class="Identifier">$</span><span class="Identifier">message</span>) {
+    <span class="Identifier">$</span><span class="Identifier">flash</span> <span class="Statement">=</span> <span class="Identifier">$</span><span class="Identifier">message</span><span class="Statement">;</span>
+}
 
-   <font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$sql</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">select
-id, title, text from entries order by id desc</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<span class="Statement">sub</span> get_flash() {
 
-   <font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$sth</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$db</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">prepare(</span></font><font color="#18b2b2"><span style="background: #ffffff">$sql</span></font><font color="#000000"><span style="background: #ffffff">)
-</span></font><font color="#b26818"><span style="background: #ffffff">or</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">die</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$db</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">errstr</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">msg</span> <span class="Statement">=</span> <span class="Identifier">$</span><span class="Identifier">flash</span><span class="Statement">;</span>
+    <span class="Identifier">$</span><span class="Identifier">flash</span> <span class="Statement">=</span> <span class="Special">&quot;&quot;</span><span class="Statement">;</span>
 
-   <font color="#18b2b2"><span style="background: #ffffff">$sth</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">execute
-</span></font><font color="#b26818"><span style="background: #ffffff">or</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">die</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$sth</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">errstr</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+    <span class="Special">return</span> <span class="Identifier">$</span><span class="Identifier">msg</span><span class="Statement">;</span>
+}
 
-   template <font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">show_entries.tt</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><font color="#000000"><span style="background: #ffffff">
-Map</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">new((</span></font><br/>
+<span class="Statement">sub</span> connect_db() {
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">dbh</span> <span class="Statement">=</span> DBIish<span class="Statement">.</span>connect(<span class="Special">'</span><span class="Constant">SQLite</span><span class="Special">'</span><span class="Statement">,</span> <span class="Statement">:</span><span class="Constant">database</span>(setting(<span class="Special">'</span><span class="Constant">database</span><span class="Special">'</span>)<span class="Statement">.</span><span class="Type">Str</span>))<span class="Statement">;</span>
 
-       <font color="#b21818"><span style="background: #ffffff">msg</span></font><font color="#000000"><span style="background: #ffffff">
-        &nbsp;&nbsp;</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-get_flash()</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><br/>
+    <span class="Special">return</span> <span class="Identifier">$</span><span class="Identifier">dbh</span><span class="Statement">;</span>
+}
 
-       <font color="#b21818"><span style="background: #ffffff">add_entry_url</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-uri_for(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">/add</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><br/>
+<span class="Statement">sub</span> init_db() {
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">db</span> <span class="Statement">=</span> connect_db()<span class="Statement">;</span>
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">schema</span> <span class="Statement">=</span> slurp <span class="Special">'</span><span class="Constant">schema.sql</span><span class="Special">'</span><span class="Statement">;</span>
+    <span class="Identifier">$</span><span class="Identifier">db</span><span class="Statement">.</span>do(<span class="Identifier">$</span><span class="Identifier">schema</span>)<span class="Statement">;</span>
+}
 
-       <font color="#b21818"><span style="background: #ffffff">entries</span></font><font color="#000000"><span style="background: #ffffff">
-    &nbsp;&nbsp;</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$sth</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">fetchall_hashref(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">id</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><br/>
+<span class="Statement">sub</span> std_tokens () {
+    <span class="Special">return</span>
+}
 
-   ))<font color="#b26818"><span style="background: #ffffff">.item;</span></font><br/>
-}<br/>
-<br/>
-post
-<font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">/add</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-{</span></font><br/>
-    <font color="#b26818"><span style="background: #ffffff">unless</span></font><font color="#000000"><span style="background: #ffffff">
-session(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">logged_in</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)
-{</span></font><br/>
-        send_error(<font color="#b218b2"><span style="background: #ffffff">&quot;</span></font><font color="#b21818"><span style="background: #ffffff">Not
-logged in</span></font><font color="#b218b2"><span style="background: #ffffff">&quot;</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b21818"><span style="background: #ffffff">401</span></font><font color="#000000"><span style="background: #ffffff">)</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<span class="Statement">sub</span> layout(<span class="Identifier">$</span><span class="Identifier">content</span>) {
+    template <span class="Special">'</span><span class="Constant">layouts/</span><span class="Special">'</span> <span class="Statement">~</span> setting(<span class="Special">'</span><span class="Constant">layout</span><span class="Special">'</span>) <span class="Statement">~</span> <span class="Special">'</span><span class="Constant">.tt</span><span class="Special">'</span><span class="Statement">,</span> {
+        <span class="Constant">css_url</span>    <span class="Statement">=&gt;</span> <span class="Special">'</span><span class="Constant">/css/style.css</span><span class="Special">'</span><span class="Statement">,</span>
+        <span class="Constant">login_url</span>  <span class="Statement">=&gt;</span> uri_for(<span class="Special">'</span><span class="Constant">/login</span><span class="Special">'</span>)<span class="Statement">,</span>
+        <span class="Constant">logout_url</span> <span class="Statement">=&gt;</span> uri_for(<span class="Special">'</span><span class="Constant">/logout</span><span class="Special">'</span>)<span class="Statement">,</span>
+        <span class="Constant">session</span>    <span class="Statement">=&gt;</span> session<span class="Statement">,</span>
+        <span class="Constant">content</span>    <span class="Statement">=&gt;</span> <span class="Identifier">$</span><span class="Identifier">content</span><span class="Statement">,</span>
+    }<span class="Statement">;</span>
+}
 
-   }<br/>
-<br/>
-    <font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$db</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
-connect_db()</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+get <span class="Special">'</span><span class="Constant">/</span><span class="Special">'</span> <span class="Statement">=&gt;</span> {
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">db</span> <span class="Statement">=</span> connect_db()<span class="Statement">;</span>
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">sql</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">select id, title, text from entries order by id desc</span><span class="Special">'</span><span class="Statement">;</span>
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">sth</span> <span class="Statement">=</span> <span class="Identifier">$</span><span class="Identifier">db</span><span class="Statement">.</span>prepare(<span class="Identifier">$</span><span class="Identifier">sql</span>)<span class="Statement">;</span>
+    <span class="Identifier">$</span><span class="Identifier">sth</span><span class="Statement">.</span>execute<span class="Statement">;</span>
+    layout template <span class="Special">'</span><span class="Constant">show_entries.tt</span><span class="Special">'</span><span class="Statement">,</span> {
+        <span class="Constant">msg</span>           <span class="Statement">=&gt;</span> get_flash()<span class="Statement">,</span>
+        <span class="Constant">add_entry_url</span> <span class="Statement">=&gt;</span> uri_for(<span class="Special">'</span><span class="Constant">/add</span><span class="Special">'</span>)<span class="Statement">,</span>
+        <span class="Constant">entries</span>       <span class="Statement">=&gt;</span> <span class="Identifier">$</span><span class="Identifier">sth</span><span class="Statement">.</span>allrows(<span class="Statement">:</span><span class="Constant">array-of-hash</span>)<span class="Statement">.</span>map({<span class="Identifier">$</span><span class="Identifier">_</span><span class="Special">&lt;</span><span class="Constant">id</span><span class="Special">&gt;</span> <span class="Statement">=&gt;</span> <span class="Identifier">$</span><span class="Identifier">_</span>})<span class="Statement">.</span><span class="Statement">hash</span><span class="Statement">,</span>
+        <span class="Constant">session</span>       <span class="Statement">=&gt;</span> session<span class="Statement">,</span>
+    }<span class="Statement">;</span>
+}
 
-   <font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$sql</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">insert
-into entries (title, text) values (?, ?)</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+post <span class="Special">'</span><span class="Constant">/add</span><span class="Special">'</span> <span class="Statement">=&gt;</span> {
+    <span class="Statement">unless</span> session<span class="Special">&lt;</span><span class="Constant">logged_in</span><span class="Special">&gt;</span> {
+        send_error(<span class="Special">&quot;</span><span class="Constant">Not logged in</span><span class="Special">&quot;</span><span class="Statement">,</span> <span class="Constant">401</span>)<span class="Statement">;</span>
+    }
 
-   <font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$sth</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$db</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">prepare(</span></font><font color="#18b2b2"><span style="background: #ffffff">$sql</span></font><font color="#000000"><span style="background: #ffffff">)
-</span></font><font color="#b26818"><span style="background: #ffffff">or</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">die</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$db</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">errstr</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">db</span> <span class="Statement">=</span> connect_db()<span class="Statement">;</span>
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">sql</span> <span class="Statement">=</span> <span class="Special">'</span><span class="Constant">insert into entries (title, text) values (?, ?)</span><span class="Special">'</span><span class="Statement">;</span>
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">sth</span> <span class="Statement">=</span> <span class="Identifier">$</span><span class="Identifier">db</span><span class="Statement">.</span>prepare(<span class="Identifier">$</span><span class="Identifier">sql</span>)<span class="Statement">;</span>
+    <span class="Identifier">$</span><span class="Identifier">sth</span><span class="Statement">.</span>execute(request<span class="Statement">.</span>params<span class="Special">&lt;</span><span class="Constant">title</span><span class="Special">&gt;</span><span class="Statement">,</span> request<span class="Statement">.</span>params<span class="Special">&lt;</span><span class="Constant">text</span><span class="Special">&gt;</span>)<span class="Statement">;</span>
 
-   <font color="#18b2b2"><span style="background: #ffffff">$sth</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">execute(body_parameters</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">get(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">title</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><font color="#000000"><span style="background: #ffffff">
-body_parameters</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">get(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">text</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">))</span></font><br/>
+    set_flash(<span class="Special">'</span><span class="Constant">New entry posted!</span><span class="Special">'</span>)<span class="Statement">;</span>
+    redirect <span class="Special">'</span><span class="Constant">/</span><span class="Special">'</span><span class="Statement">;</span>
+}
 
-       <font color="#b26818"><span style="background: #ffffff">or</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">die</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$sth</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">errstr</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-<br/>
+get <span class="Special">'</span><span class="Constant">/login</span><span class="Special">'</span> <span class="Statement">=&gt;</span> <span class="Statement">sub</span> (<span class="Statement">*</span><span class="Identifier">@</span><span class="Identifier">a</span>) {
+    <span class="Comment"># display login form</span>
+    layout template <span class="Special">'</span><span class="Constant">login.tt</span><span class="Special">'</span><span class="Statement">,</span> {<span class="Constant">err</span> <span class="Statement">=&gt;</span> <span class="Special">''</span>}<span class="Statement">;</span>
 
-   set_flash(<font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">New
-entry posted!</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+}
 
-   redirect <font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">/</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-}<br/>
-<br/>
-any
-$[<font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">get</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">post</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">]</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">/login</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">sub</span></font><font color="#000000"><span style="background: #ffffff">
-(</span></font><font color="#b26818"><span style="background: #ffffff">*</span></font><font color="#18b2b2"><span style="background: #ffffff">@a</span></font><font color="#000000"><span style="background: #ffffff">)
-{</span></font><br/>
-    <font color="#b218b2"><span style="background: #ffffff">my</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$err</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-<br/>
+post <span class="Special">'</span><span class="Constant">/login</span><span class="Special">'</span> <span class="Statement">=&gt;</span> <span class="Statement">sub</span> (<span class="Statement">*</span><span class="Identifier">@</span><span class="Identifier">a</span>) {
+    <span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">err</span><span class="Statement">;</span>
 
-   <font color="#b26818"><span style="background: #ffffff">if</span></font><font color="#000000"><span style="background: #ffffff">
-( request</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">method
-</span></font><font color="#b26818"><span style="background: #ffffff">eq</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">&quot;</span></font><font color="#b21818"><span style="background: #ffffff">POST</span></font><font color="#b218b2"><span style="background: #ffffff">&quot;</span></font><font color="#000000"><span style="background: #ffffff">
-) {</span></font><br/>
-        <font color="#1818b2"><span style="background: #ffffff">#
-process form input</span></font><br/>
-        <font color="#b26818"><span style="background: #ffffff">if</span></font><font color="#000000"><span style="background: #ffffff">
-body_parameters</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">get(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">username</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)
-</span></font><font color="#b26818"><span style="background: #ffffff">ne</span></font><font color="#000000"><span style="background: #ffffff">
-setting(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">username</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)
-{</span></font><br/>
-            <font color="#18b2b2"><span style="background: #ffffff">$err</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">&quot;</span></font><font color="#b21818"><span style="background: #ffffff">Invalid
-username</span></font><font color="#b218b2"><span style="background: #ffffff">&quot;</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+    <span class="Comment"># process form input</span>
+    <span class="Statement">if</span> request<span class="Statement">.</span>params<span class="Special">&lt;</span><span class="Constant">username</span><span class="Special">&gt;</span> <span class="Statement">ne</span> setting(<span class="Special">'</span><span class="Constant">username</span><span class="Special">'</span>) {
+        <span class="Identifier">$</span><span class="Identifier">err</span> <span class="Statement">=</span> <span class="Special">&quot;</span><span class="Constant">Invalid username</span><span class="Special">&quot;</span><span class="Statement">;</span>
+    }
+    <span class="Statement">elsif</span> request<span class="Statement">.</span>params<span class="Special">&lt;</span><span class="Constant">password</span><span class="Special">&gt;</span> <span class="Statement">ne</span> setting(<span class="Special">'</span><span class="Constant">password</span><span class="Special">'</span>) {
+        <span class="Identifier">$</span><span class="Identifier">err</span> <span class="Statement">=</span> <span class="Special">&quot;</span><span class="Constant">Invalid password</span><span class="Special">&quot;</span><span class="Statement">;</span>
+    }
+    <span class="Statement">else</span> {
+        session<span class="Special">&lt;</span><span class="Constant">logged_in</span><span class="Special">&gt;</span> <span class="Statement">=</span> <span class="Type">True</span><span class="Statement">;</span>
+        set_flash(<span class="Special">'</span><span class="Constant">You are logged in.</span><span class="Special">'</span>)<span class="Statement">;</span>
+        <span class="Special">return</span> redirect <span class="Special">'</span><span class="Constant">/</span><span class="Special">'</span><span class="Statement">;</span>
+    }
 
-       }<br/>
-        <font color="#b26818"><span style="background: #ffffff">elsif</span></font><font color="#000000"><span style="background: #ffffff">
-body_parameters</span></font><font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">get(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">password</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)
-</span></font><font color="#b26818"><span style="background: #ffffff">ne</span></font><font color="#000000"><span style="background: #ffffff">
-setting(</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">password</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)
-{</span></font><br/>
-            <font color="#18b2b2"><span style="background: #ffffff">$err</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b218b2"><span style="background: #ffffff">&quot;</span></font><font color="#b21818"><span style="background: #ffffff">Invalid
-password</span></font><font color="#b218b2"><span style="background: #ffffff">&quot;</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+    <span class="Comment"># display login form</span>
+    layout template <span class="Special">'</span><span class="Constant">login.tt</span><span class="Special">'</span><span class="Statement">,</span> {<span class="Constant">err</span> <span class="Statement">=&gt;</span> <span class="Identifier">$</span><span class="Identifier">err</span>}<span class="Statement">;</span>
+}
 
-       }<br/>
-        <font color="#b26818"><span style="background: #ffffff">else</span></font><font color="#000000"><span style="background: #ffffff">
-{</span></font><br/>
-            session <font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">logged_in</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-true</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+get <span class="Special">'</span><span class="Constant">/logout</span><span class="Special">'</span> <span class="Statement">=&gt;</span> {
+   app<span class="Statement">.</span>destroy_session<span class="Statement">;</span>
+   set_flash(<span class="Special">'</span><span class="Constant">You are logged out.</span><span class="Special">'</span>)<span class="Statement">;</span>
+   redirect <span class="Special">'</span><span class="Constant">/</span><span class="Special">'</span><span class="Statement">;</span>
+}
 
-           set_flash(<font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">You
-are logged in.</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+init_db()<span class="Statement">;</span>
 
-           <font color="#b218b2"><span style="background: #ffffff">return</span></font><font color="#000000"><span style="background: #ffffff">
-redirect </span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">/</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
+<span class="Statement">sub</span> send_error(<span class="Identifier">$</span><span class="Identifier">message</span><span class="Statement">,</span> <span class="Identifier">$</span><span class="Identifier">code</span>) {
+}
 
-       }<br/>
-    }<br/>
-<br/>
-    <font color="#1818b2"><span style="background: #ffffff">#
-display login form</span></font><br/>
-    template <font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">login.tt</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><font color="#000000"><span style="background: #ffffff">
-${</span></font><br/>
-        <font color="#b21818"><span style="background: #ffffff">err</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#18b2b2"><span style="background: #ffffff">$err</span></font><font color="#b26818"><span style="background: #ffffff">,</span></font><br/>
+<span class="Statement">sub</span> uri_for(<span class="Identifier">$</span><span class="Identifier">path</span>) {
+    <span class="Special">return</span> <span class="Identifier">$</span><span class="Identifier">path</span><span class="Statement">;</span>
+}
 
-   }<font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-}<br/>
-<br/>
-get
-<font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">/logout</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">
-</span></font><font color="#b26818"><span style="background: #ffffff">=&gt;</span></font><font color="#000000"><span style="background: #ffffff">
-{</span></font><br/>
-    app<font color="#b26818"><span style="background: #ffffff">.</span></font><font color="#000000"><span style="background: #ffffff">destroy_session</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-
-   set_flash(<font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">You
-are logged out.</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#000000"><span style="background: #ffffff">)</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-
-   redirect <font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b21818"><span style="background: #ffffff">/</span></font><font color="#b218b2"><span style="background: #ffffff">'</span></font><font color="#b26818"><span style="background: #ffffff">;</span></font><br/>
-}<font color="#000000"><span style="background: #ffffff"><br/>
-</span></font><br/>
-init_db()<font color="#b26818"><span style="background: #ffffff">;</span></font></font></p>
+<span class="Comment"># vim&#0058; ft=perl6</span>
+</pre>
 </body>
 </html>
+<!-- vim: set foldmethod=manual : -->

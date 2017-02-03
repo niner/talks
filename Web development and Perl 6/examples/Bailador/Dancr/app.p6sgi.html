@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>~/talks/Web development and Perl 6/examples/Bailador/Dancr/tiny.pl6.html</title>
+<title>~/talks/Web development and Perl 6/examples/Bailador/Dancr/app.p6sgi.html</title>
 <meta name="Generator" content="Vim/8.0">
 <meta name="plugin-version" content="vim7.4_v2">
 <meta name="syntax" content="perl6">
@@ -11,14 +11,9 @@
 <link rel="stylesheet" type="text/css" href="../../syntax.css">
 <body>
 <pre id='vimCodeElement'>
-<span class="PreProc">use</span> Bailador<span class="Statement">;</span>
-
-<span class="Comment"># simple cases</span>
-get <span class="Special">'</span><span class="Constant">/</span><span class="Special">'</span> <span class="Statement">=&gt;</span> <span class="Statement">sub</span> {
-    <span class="Special">&quot;</span><span class="Constant">hello world</span><span class="Special">&quot;</span>
-}
-
-baile<span class="Statement">;</span>
+<span class="PreProc">use</span> Dancr<span class="Statement">;</span>
+<span class="Special">my</span> <span class="Identifier">$</span><span class="Identifier">app</span> <span class="Statement">=</span> Dancr<span class="Statement">.</span>to-app()<span class="Statement">;</span>
+<span class="Comment"># vim&#0058; ft=perl6</span>
 </pre>
 </body>
 </html>

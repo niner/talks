@@ -1,7 +1,8 @@
-use Dancer2:from<Perl5>;
- 
-get '/' => {
-  'Hello World!';
-};
- 
-start;
+use Bailador;
+
+# simple cases
+get '/' => sub {
+    "hello world"
+}
+
+baile;
