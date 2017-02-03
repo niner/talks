@@ -1,0 +1,12 @@
+Last year ribasushi started a fund raiser for DBIx::Class maintenance
+On that occasion I went to our management and asked for a little budget to spend on advancing the free software our business is based on.
+And something extraordinary happened.
+I got it.
+
+The fund raiser did not succeed but I still have this budget.
+So now the Enlightened Perl Organisation gets 500 Euros each month.
+
+Now as a homework exercise, I want each and every one of you to when you get home, go to your managers and ask for a budget.
+Most will not be successful.
+But you will never get anything.
+Unless you ask.
