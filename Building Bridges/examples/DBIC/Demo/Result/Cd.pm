@@ -95,7 +95,7 @@ __PACKAGE__->belongs_to(
 # Created by DBIx::Class::Schema::Loader v0.07043 @ 2015-09-01 13:18:52
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:7kPADFeDHuCnkZ2VDAhaZg
 
-use v6::inline constructors => [qw(new inflate_result)];
+use v6::inline;
 
 method full_title() {
     "{$.artist.name} - {$.title}"
