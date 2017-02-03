@@ -70,6 +70,12 @@ Waiting:        5    6   1.8      5      20
 Total:          5    6   1.8      5      20
 
 
+"What do I do if I want to use MongoDB?"
+Use MongoDB module or Perl 5 stuff (Search::ElasticSearch)
+
+Why mix Perl 5/6 this way?
+Because Perl 6 is awesome and there are very few drawbacks.
+
 Conclusion:
 The only thing keeping you from doing web development with Perl 6 is yourself.
 You have to decide whether you want to be on the forefront of development and seizing the opportunity to carve out a name for yourself.
